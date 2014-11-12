@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112102754) do
+ActiveRecord::Schema.define(version: 20141112131252) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20141112102754) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "deadline"
   end
 
   add_index "jobs", ["project_id"], name: "index_jobs_on_project_id"

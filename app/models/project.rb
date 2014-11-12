@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  include SluggableGem
   belongs_to :manager, class_name: "User", foreign_key: "manager_id"
 
   has_many :user_projects
@@ -9,6 +10,6 @@ class Project < ActiveRecord::Base
   has_many :likes, as: :likeable
 
   validates :name, presence: true
-
+  sluggable_column :name
 
 end

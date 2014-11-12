@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def require_member
+    if logged_in? && !@project.users.include?(current_user)
+      flash[:error] = "You are not allowed"
+      redirect_to root_url
+    end
+  end
 end

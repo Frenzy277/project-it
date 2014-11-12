@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "You've logged in."
-      redirect_to root_url
+      redirect_to projects_url
     else
       flash.now[:error] = "Incorrect username or password."
       render :new

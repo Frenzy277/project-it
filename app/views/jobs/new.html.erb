@@ -1,0 +1,22 @@
+<h1>new job</h1>
+<%= render 'shared/errors', obj: @job %>
+
+<%= form_for [@project, @job] do |f| %>
+  
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+  <br>
+
+  <%= f.label :description %><br />
+  <%= f.text_area :description, rows: 3 %>
+  <br>
+
+  <%= f.date_select :deadline %>
+  <br>
+  <%= f.select :week, ['week1', 'week2', 'week3', 'week4'] %>
+  <br>
+  <br>
+  <%= f.submit %>
+
+
+<% end %>

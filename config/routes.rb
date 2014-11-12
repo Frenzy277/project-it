@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'projects#index'
+  root to: 'static_pages#home'
 
   get '/register', to: "users#new", as: :register
   get '/login', to: "sessions#new"
@@ -7,5 +7,17 @@ Rails.application.routes.draw do
   get '/logout', to: "sessions#destroy"
 
   resources :users, only: [:create, :show, :edit, :update]
-  resources :projects, only: [:new, :create, :show, :edit, :update, :destroy]
+
+  namespace :user do
+    resources :projects, only: :index
+    resources :jobs, only: :index
+  end
+
+  resources :projects do
+    member do
+      get 'management'
+    end
+
+    resources :jobs, except: [:index]
+  end
 end
