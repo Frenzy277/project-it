@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_secure_password, validations: false
+  has_secure_password validations: false
 
   has_many :user_projects
   has_many :projects, through: :user_projects
