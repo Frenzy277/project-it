@@ -1,5 +1,8 @@
 <% if logged_in? %>
-  <%= link_to "Logout", logout_path %>
+  <%= link_to "Logout", logout_path %> |
+  <%= link_to "edit profile", edit_user_path(current_user) %> |
+  <%= link_to "view profile", user_path(current_user) %> |
+  <%= link_to "New project", new_project_path %>
 <% else %>
   <%= link_to "Register", register_path %> |
   <%= link_to "Login", login_path %> |

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include SluggableGem
   has_secure_password validations: false
 
   has_many :user_projects
@@ -8,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :comments
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 3 }
+  validates :password, presence: true, length: { minimum: 3 }, on: :create
 
+  sluggable_column :username
 end

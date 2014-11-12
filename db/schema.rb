@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112074614) do
+ActiveRecord::Schema.define(version: 20141112102754) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20141112074614) do
   add_index "likes", ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
-  create_table "products", force: true do |t|
+  create_table "projects", force: true do |t|
     t.string   "name"
     t.string   "status"
     t.string   "slug"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20141112074614) do
     t.datetime "updated_at"
   end
 
-  add_index "products", ["manager_id"], name: "index_products_on_manager_id"
+  add_index "projects", ["manager_id"], name: "index_projects_on_manager_id"
 
   create_table "user_projects", force: true do |t|
     t.integer  "user_id"
