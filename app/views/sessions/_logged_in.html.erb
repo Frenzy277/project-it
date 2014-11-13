@@ -1,3 +1,39 @@
+<li>
+  <%= link_to messages_path do %>
+    Messages <span class="glyphicon glyphicon-envelope"></span> <span class='badge'></span>
+  <% end %>
+</li>
+
+<li class="dropdown">
+  <%= link_to "#", class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } do %>
+    <span style="color: yellow;">Projects <span class="glyphicon glyphicon-collapse-down"></span></span>
+  <% end %>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <%= link_to projects_path do %>
+        <span class="glyphicon glyphicon-list"></span> <strong>All projects</strong>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to edit_user_path(current_user) do %>
+        <span class="glyphicon glyphicon-list-alt"></span> <strong>My portfolio</strong> <span class='badge'><%= current_user.projects.count %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_jobs_path do %>
+        <span class="glyphicon glyphicon-tasks"></span> <strong>My jobs</strong><span class='badge' id="jobs_count"><%= current_user.jobs.count %></span>
+      <% end %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <%= link_to new_project_path do %>
+        <span class="glyphicon glyphicon-plus"></span> <strong>Create a project</strong>
+      <% end %>
+    </li>
+  </ul>
+</li>
+
+
 <li class="dropdown">
   <%= link_to "#", class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } do %>
     <%= current_user.username %>  <span class="glyphicon glyphicon-collapse-down"></span>
@@ -23,7 +59,3 @@
 </li>
 
 
-
-<li><%= link_to "Projects", projects_path %></li>
-<li><%= link_to "New project", new_project_path %></li>
-<li><%= link_to "My jobs", user_jobs_path %></li>

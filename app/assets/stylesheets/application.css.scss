@@ -6,25 +6,42 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#topper {
-  padding-top: 50px;
+
+.fork_github {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  border: 0; 
+  width: 149px; 
+  height: 149px;
 }
+
 
 #Tealeaf {
   display: none;
 }
 
-.navbar-brand {
-  font-size: 40px;
-}
 
-.logo {
-  font-family: 'Bangers', sans-serif;
+.divider {
+  border: 1px dashed silver;
 }
 
 .dropdown-menu {
+  font-size: 20px;
   -webkit-box-shadow: 5px 5px 25px 1px #000000;
   box-shadow: 5px 5px 25px 1px #000000;
+  strong {
+    margin-left: 15px;
+  }
+  .badge {
+    position: relative;
+    bottom: 3px;
+    margin-left: 15px;
+  }
+  #jobs_count {
+    background-color: red;
+    margin-left: 58px;
+  }
 }
 
 .signin {
@@ -76,6 +93,18 @@
 .field_with_errors {
   @extend .has-error;
   .form-control { color: $state-danger-text; }
+}
+
+#topper {
+  padding-top: 50px;
+}
+
+.navbar-brand {
+  font-size: 40px;
+}
+
+.logo {
+  font-family: 'Bangers', sans-serif;
 }
 
 footer {

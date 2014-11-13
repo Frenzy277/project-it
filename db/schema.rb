@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112131252) do
+ActiveRecord::Schema.define(version: 20141113202919) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(version: 20141112131252) do
 
   add_index "likes", ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+
+  create_table "messages", force: true do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.text     "body"
+    t.datetime "viewed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id"
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "projects", force: true do |t|
     t.string   "name"
