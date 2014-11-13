@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "You are registered."
+      flash[:success] = "You are registered."
       redirect_to root_url
     else
       render :new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Your profile was updated."
+      flash[:success] = "Your profile was updated."
       redirect_to root_url
     else
       render :edit

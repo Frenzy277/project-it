@@ -1,0 +1,21 @@
+<li class="dropdown">
+  <%= link_to '#', class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } do %>
+    Sign In  <span class='glyphicon glyphicon-collapse-down'></span>
+  <% end %>
+  <div class='dropdown-menu' role='menu'>
+    <fieldset class="signin">
+      <%= form_tag '/login', html: { role: 'form' } do %>
+        <div class='form-group'>
+          <%= text_field_tag :username, '' , placeholder: "Enter username", class: "form-control" %>
+        </div>
+        <div class='form-group'>
+          <%= password_field_tag :password, '', placeholder: "Password", class: "form-control" %>
+        </div>
+        <%= submit_tag "Let me in!", class: "btn btn-primary" %>
+        <%= link_to register_path, class: "btn btn-default", role: "button" do %>
+          Register me, now!
+        <% end %>
+      <% end %>
+    </fieldset>
+  </div>
+</li>

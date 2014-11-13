@@ -15,3 +15,25 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+$(document).ready(function() {
+  $('#Tealeaf').fadeIn(5000);
+
+  $('#reg_heart').hover(
+    function(){
+      $(this).addClass('reg_heart_move');
+    },
+    function(){
+      $(this).removeClass('reg_heart_move');
+    }
+  );
+
+  $('.dropdown-menu li').hover(
+    function(){
+      $(this).addClass('active');
+    },
+    function(){
+      $(this).removeClass('active');
+    }
+  );
+});

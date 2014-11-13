@@ -1,23 +1,21 @@
 class SessionsController < ApplicationController
   
-  def new; end
-
   def create
     user = User.find_by username: params[:username]
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "You've logged in."
+      flash[:success] = "You've logged in."
       redirect_to projects_url
     else
-      flash.now[:error] = "Incorrect username or password."
-      render :new
+      flash[:danger] = "Incorrect username or password."
+      redirect_to root_url
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "You've logged out."
+    flash[:success] = "You've logged out."
     redirect_to root_url
   end
 end

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get '/register', to: "users#new", as: :register
-  get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 

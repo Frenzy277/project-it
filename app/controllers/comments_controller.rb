@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.job = @job
 
     if @comment.save
-      flash[:notice] = "Successfully added a comment."
+      flash[:success] = "Successfully added a comment."
       redirect_to :back
     else
       render 'projects/management'

@@ -13,68 +13,19 @@
 
   <div id="topper"></div>
   <%= render 'layouts/top_nav' %>
+
+  <div class="container">
+    <%= render 'layouts/flash_messages' %>
+  </div>
   <% if params[:controller] == 'static_pages' && params[:action] == 'home' %>
-    <div class="jumbotron" id="jumbotron">
-      <div class="container">
-        <h1>Hello, world!</h1>
-        <h2></h2>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
+    <%= render 'layouts/jumbotron' %>
 
-    <div id="myCarousel" class="carousel slide">
-
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-
-      <div class="carousel-inner">
-        
-        <div class="item active">
-          <img src="http://funmozar.com/wp-content/uploads/2014/10/lamborghini-image.jpg" alt="Lambo 2" class="img-responsive" height="100%" width="100%"/>
-          <div class="carousel-caption">
-            <h3>Lambo 2</h3>
-            <p> Awesome car </p>
-          </div>
-
-        </div>
-
-        <div class="item">
-          <img src="http://images6.alphacoders.com/423/423484.jpg" alt="Lambo 2" class="img-responsive" height="100%" width="100%"/>
-          <div class="carousel-caption">
-            <h3>Lambo 3</h3>
-            <p> Awesome car </p>
-          </div>
-        </div>
-
-        <div class="item">
-          <img src="http://th01.deviantart.net/fs70/PRE/i/2013/338/9/2/lamborghini_sinistro_special_edition__by_mcmercslr-d6woioq.jpg" alt="Lambo 3" class="img-responsive" height="100%" width="100%" />
-          <div class="carousel-caption">
-            <h3>Lambo 4</h3>
-            <p> Awesome car </p>
-          </div>
-        </div>
-
-      </div>
-
-      <a href="#myCarousel" class="carousel-control left" data-slide="prev" role="button">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      </a>
-
-      <a href="#myCarousel" class="carousel-control right" data-slide="next" role="button">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      </a>
-
-    </div>
+    <%= render 'layouts/carousel' %>
 
   <% end %>
   
 
   <div class="container">
-    <%= render 'layouts/flash_messages' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </div>
