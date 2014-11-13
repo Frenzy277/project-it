@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   resources :projects do
     member do
       get 'management'
+      post 'like'
     end
 
     resources :jobs, except: [:index]
+  end
+
+  resources :jobs do
+    resources :comments, only: [:create]
   end
 end

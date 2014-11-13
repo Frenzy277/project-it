@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :management, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :management, :edit, :update, :destroy, :like]
   before_action :require_user
   before_action :require_member, only: [:management]
 
@@ -37,6 +37,11 @@ class ProjectsController < ApplicationController
   end
 
   def management
+  end
+
+  def like
+    like = Like.create(user_id: current_user.id, likeable: @project, like: true)
+    redirect_to :back
   end
 
   private

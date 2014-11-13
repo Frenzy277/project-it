@@ -1,4 +1,45 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to "Project-it", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="navbar-left">
+      <ul class='nav navbar-nav'>
+        <li><%= link_to "Github", "https://github.com/Frenzy277/project-it" %></li>
+      </ul>
+    </div>
+
+    <div class="navbar-right" id="navbar" role="nav">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <%= link_to '#', class: "dropdown-toggle", role: "button", "data-toggle" => "dropdown", "aria-expanded" => "false" do %>
+            Sign In <span class='caret'></span>
+          <% end %>
+          <div class='dropdown-menu' role='menu'>
+            <fieldset class="signin">
+              <%= form_tag '/login', html: { role: 'form' } do %>
+                <div class='form-group'>
+                  <%= text_field_tag :username, '' , placeholder: "Enter username", class: "form-control" %>
+                </div>
+                <div class='form-group'>
+                  <%= password_field_tag :password, '', placeholder: "Password", class: "form-control" %>
+                </div>
+                <%= submit_tag "Let me in!", class: "btn btn-primary" %>
+                <%= link_to "Register me, now!", register_path, class: "btn btn-default" %>
+              <% end %>
+            </fieldset>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div> 
+</nav>
+
+
+
 <% if logged_in? %>
+  <%= link_to "Projects", projects_path %> |
   <%= link_to "Logout", logout_path %> |
   <%= link_to "edit profile", edit_user_path(current_user) %> |
   <%= link_to "view profile", user_path(current_user) %> |

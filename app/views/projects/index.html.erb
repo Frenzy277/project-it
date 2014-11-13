@@ -2,6 +2,10 @@
 
 <ul>
   <% @projects.each do |project| %>
-    <li><%= project.name %></li>  
+    <li><%= project.name %> [<%= link_to "Like", like_project_path(project), method: 'post' %>]
+      <br>(<%= link_to "show project", project_path(project) %>)
+      <br>(<%= link_to "management", management_project_path(project) %>)
+
+    </li>
   <% end %>
 </ul>

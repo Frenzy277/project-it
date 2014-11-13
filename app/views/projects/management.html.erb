@@ -1,8 +1,30 @@
 <h1>management of project</h1>
 
 <ul>
-    <li><%= link_to "New job", new_project_job_path(@project) %></li>
+    <li><%= link_to "Create a job", new_project_job_path(@project) %></li>
     <li></li>
     <li></li>
     <li></li>
+</ul>
+
+<br>
+<br>
+
+<p>jobs</p>
+<ul>
+  <% @project.jobs.each do |job| %>
+    <li><%= job.name %>
+      <%= form_for [job, Comment.new] do |f| %>
+        <%= f.label :body %><br />
+        <%= f.text_area :body %>
+        <%= f.submit "Add comment." %>
+      <% end %>
+
+      <br>
+      <br>
+      <% job.comments.each do |comment| %>
+        <p><%= comment.body %></p>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
