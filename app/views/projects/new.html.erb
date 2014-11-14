@@ -1,15 +1,17 @@
 <section class="wrapper">
-  <%= render 'shared/content_title', title: "Choose one:" %>
+  <%= render 'shared/content_title', title: "Solo or Team" %>
+  <%= render 'shared/errors', obj: @project %>
   <div class='buttons'>
-    <%= button_tag "Solo Project", class: "btn btn-primary btn-lg pull-left", data: { toggle: "modal", target: "#soloModal" } %>
+    <%= button_tag :button, class: "btn btn-primary btn-lg pull-left", data: { toggle: "modal", target: "#soloModal" } do %>
+      <i class="fa fa-user fa-5x"></i>
+    <% end %>
 
-    <%= button_tag "Team Project", class: "btn btn-primary btn-lg pull-right", data: { toggle: "modal", target: "#teamModal" } %>
+    <%= button_tag :button, class: "btn btn-primary btn-lg pull-right", data: { toggle: "modal", target: "#teamModal" } do %>
+      <i class="fa fa-users fa-5x"></i>
+    <% end %>
     <div class="clearfix"></div>
   </div>
 </section>
 
 <%= render 'projects/modal_form', solo_or_team: 'solo' %>
 <%= render 'projects/modal_form', solo_or_team: 'team' %>
-
-
-<%= render 'shared/errors', obj: @project %>
