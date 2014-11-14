@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   has_many :jobs
   has_many :likes, as: :likeable
 
-  validates :name, presence: true
-  sluggable_column :name
+  validates :project_name, presence: true
+  sluggable_column :project_name
 
 end

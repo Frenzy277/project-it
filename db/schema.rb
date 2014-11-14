@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113234738) do
+ActiveRecord::Schema.define(version: 20141114084913) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20141113234738) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "project_description"
+    t.boolean  "team",                default: false
   end
 
   add_index "projects", ["manager_id"], name: "index_projects_on_manager_id"

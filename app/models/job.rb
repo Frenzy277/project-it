@@ -4,5 +4,5 @@ class Job < ActiveRecord::Base
 
   has_many :comments
 
-  validates :name, presence: true
+  validates :job_name, presence: true
 end

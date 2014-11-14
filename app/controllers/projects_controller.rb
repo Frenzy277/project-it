@@ -15,9 +15,11 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.users << current_user
     @project.manager = current_user
+    @project.team = true if params[:project][:team]
+ 
 
     if @project.save
-      flash[:notice] = "Project has been created."
+      flash[:success] = "Project has been created."
       redirect_to management_project_url(@project)
     else
       render :new
@@ -47,7 +49,8 @@ class ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:name, :github_url)
+      params.require(:project).permit(:project_name, :project_description, :end_date,
+                                      :github_url, :heroku_url, category_ids: [])
     end
 
     def set_project

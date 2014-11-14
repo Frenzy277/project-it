@@ -1,10 +1,12 @@
 /*
+ *= require jquery-ui/datepicker
  *= require_tree .
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 .wrapper {
   position: relative;
@@ -36,6 +38,11 @@
   text-align: center;
   vertical-align: middle;
   left: 40%;
+}
+
+.buttons > button {
+  width: 49.7%;
+  height: 200px;
 }
 
 
@@ -70,7 +77,7 @@
     margin-bottom: 15px;
   }
   .btn-default {
-    margin-left: 110px;
+    margin-left: 45px;
   }
 }
 
@@ -94,6 +101,10 @@
 
 .divider {
   border: 1px dashed silver;
+}
+
+.clearfix {
+  clear: both;
 }
 
 .reg_heart_move {

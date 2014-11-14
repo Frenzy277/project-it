@@ -1,50 +1,15 @@
 <section class="wrapper">
   <%= render 'shared/content_title', title: "Choose one:" %>
   <div class='buttons'>
-    <%= button_tag "Solo Project", class: "btn btn-primary btn-lg", data: { toggle: "modal", target: "#soloModal" } %>
+    <%= button_tag "Solo Project", class: "btn btn-primary btn-lg pull-left", data: { toggle: "modal", target: "#soloModal" } %>
 
-    <%= button_tag "Team Project", class: "btn btn-primary btn-lg", data: { toggle: "modal", target: "#teamModal" } %>
+    <%= button_tag "Team Project", class: "btn btn-primary btn-lg pull-right", data: { toggle: "modal", target: "#teamModal" } %>
+    <div class="clearfix"></div>
   </div>
 </section>
 
-<div class="modal fade" id="soloModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <%= close_button('modal') %>
-        <h4 class="modal-title" id="myModalLabel"> Solo project </h4>
-      </div><!-- modal header end -->
-      <div class="modal-body">
-        <%= form_for @project do |f| %>
-          <%= f.label :project_name %><br />
-          <%= f.text_field :project_name %>
-
-          <%= f.label :github_url %><br />
-          <%= f.text_field :github_url %>
-      </div><!-- modal body end-->
-      <div class="modal-footer"> 
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= f.submit "Create a project", class: "btn btn-primary" %>
-      </div><!-- modal footer end-->
-        <% end %>
-    </div><!-- modal content end-->
-  </div><!-- modal dialog end -->
-</div><!-- modal end-->
-
-
-<div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <%= close_button('modal') %>
-        <h4 class="modal-title" id="myModalLabel"> Modal title </h4>
-      </div><!-- modal header -->
-
-
-
-    </div><!-- modal content -->
-  </div><!-- modal dialog -->
-</div><!-- modal -->
+<%= render 'projects/modal_form', solo_or_team: 'solo' %>
+<%= render 'projects/modal_form', solo_or_team: 'team' %>
 
 
 <%= render 'shared/errors', obj: @project %>

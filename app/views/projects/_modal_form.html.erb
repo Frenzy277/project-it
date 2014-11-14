@@ -1,0 +1,65 @@
+<div class="modal fade" id="<%= solo_or_team %>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= close_button('modal') %>
+        <h4 class="modal-title" id="myModalLabel"> <%= solo_or_team.capitalize %> project </h4>
+      </div><!-- modal header end -->
+      <div class="modal-body">
+        <%= form_for @project, html: { class: "form-horizontal", role: "form" } do |f| %>
+          <div class="row">
+            <div class="form-group">
+              <%= f.label :project_name, class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_field :project_name, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :project_description, "Description", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_area :project_description, rows: 3, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :end_date, "End-date", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_field :end_date, id: "date_picker", class: "form-control", placeholder: "Select an estimated end-date." %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :github_url, "Github", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_field :github_url, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :heroku_url, "Heroku" ,class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_field :heroku_url, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :category_ids, "Categories", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+                  <%= cb.label(class: "checkbox inline") { cb.check_box(class: "checkbox") + cb.text } %>
+                <% end %>
+              </div>
+            </div>
+
+            <%= f.hidden_field :team, value: true if solo_or_team == 'team' %>
+          </div>
+      </div><!-- modal body end-->
+      <div class="modal-footer"> 
+        <%= button_tag "Close", class: 'btn btn-default', data: { dismiss: "modal" } %>
+        <%= f.submit "Create a project", class: "btn btn-primary" %>
+      </div><!-- modal footer end-->
+        <% end %>
+    </div><!-- modal content end-->
+  </div><!-- modal dialog end -->
+</div><!-- modal end-->

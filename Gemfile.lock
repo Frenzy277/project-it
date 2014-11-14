@@ -44,6 +44,8 @@ GEM
     coffee-script-source (1.8.0)
     erubis (2.7.0)
     execjs (2.2.2)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     hirb (0.7.2)
     i18n (0.6.11)
@@ -53,6 +55,8 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.1)
+      railties (>= 3.2.16)
     json (1.8.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -132,9 +136,11 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass
   coffee-rails (~> 4.0.0)
+  font-awesome-rails
   hirb
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails
   pg
   pry
   quiet_assets
