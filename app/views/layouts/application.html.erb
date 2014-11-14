@@ -3,8 +3,8 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Project-it</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true  %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
   <%= render 'layouts/shim' %>
@@ -18,9 +18,7 @@
   </div>
   <% if params[:controller] == 'static_pages' && params[:action] == 'home' %>
     <%= render 'layouts/jumbotron' %>
-
     <%= render 'layouts/carousel' %>
-
   <% end %>
   
 

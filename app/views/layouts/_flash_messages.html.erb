@@ -1,9 +1,7 @@
 <% if flash.keys.any? %>
   <% flash.each do |key, message| %>
     <%= content_tag :div, class: "alert alert-#{key} fade in" do %>
-      <%= content_tag(:button, content_tag(:span, nil, class: "glyphicon glyphicon-remove-circle"), class: "close", 
-                            data: { dismiss: "alert" }, 
-                            aria: { hidden: "true" }) %>
+      <%= close_button('alert') %>
       <%= message %>
     <% end %>
   <% end %>

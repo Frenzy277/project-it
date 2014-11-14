@@ -1,4 +1,6 @@
-<h1>Projects Index</h1>
+<section class="wrapper">
+  <%= render 'shared/content_title', title: "All Projects" %>
+
 
 <ul>
   <% @projects.each do |project| %>
@@ -9,3 +11,5 @@
     </li>
   <% end %>
 </ul>
+
+</section>

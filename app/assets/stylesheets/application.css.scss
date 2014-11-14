@@ -6,25 +6,38 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-.fork_github {
-  position: absolute; 
-  top: 0; 
-  right: 0; 
-  border: 0; 
-  width: 149px; 
-  height: 149px;
+.wrapper {
+  position: relative;
+  top: 20px;
+  border-radius: 10px;
+  width: 100%;
+  padding: 0px 7px 25px 7px;
+  margin-bottom: 40px;
+  border: 1px solid silver;
+  background: #bdc3c7;
 }
 
+.title_header {
+  position: relative;
+  top: -13px;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background: #ecf0f1;
 
-#Tealeaf {
-  display: none;
+  &:hover {
+    background: white;
+  }
 }
 
-
-.divider {
-  border: 1px dashed silver;
+.text {
+  position: relative;
+  top: 5px;
+  text-align: center;
+  vertical-align: middle;
+  left: 40%;
 }
+
 
 .dropdown-menu {
   font-size: 20px;
@@ -40,7 +53,7 @@
   }
   #jobs_count {
     background-color: red;
-    margin-left: 58px;
+    margin-left: 60px;
   }
 }
 
@@ -75,6 +88,14 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#89d7ff',GradientType=0 ); /* IE6-8 */
 }
 
+#Tealeaf {
+  display: none;
+}
+
+.divider {
+  border: 1px dashed silver;
+}
+
 .reg_heart_move {
   position: relative;
   color: white;
@@ -105,6 +126,15 @@
 
 .logo {
   font-family: 'Bangers', sans-serif;
+}
+
+.fork_github {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  border: 0; 
+  width: 149px; 
+  height: 149px;
 }
 
 footer {

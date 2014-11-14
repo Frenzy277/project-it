@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :likes, as: :likeable
   has_many :jobs
   has_many :comments
+  has_many :messages, foreign_key: 'recipient_id'
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 3 }, on: :create

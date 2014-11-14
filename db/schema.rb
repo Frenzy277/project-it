@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113202919) do
+ActiveRecord::Schema.define(version: 20141113234738) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20141113202919) do
   create_table "jobs", force: true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
-    t.string   "name"
+    t.string   "job_name"
     t.string   "status"
     t.string   "week"
     t.text     "description"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20141113202919) do
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "projects", force: true do |t|
-    t.string   "name"
+    t.string   "project_name"
     t.string   "status"
     t.string   "slug"
     t.string   "github_url"

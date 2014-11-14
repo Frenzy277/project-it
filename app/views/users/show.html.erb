@@ -1,7 +1,8 @@
-<h1>profile: <%= @user.username %></h1>
+<section class="wrapper">
+  <%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
+  <p>
+    username: <%= @user.username %><br>
+    time_zone: <%= @user.time_zone %>
+  </p>
+</section>
 
-<p>
-  username: <%= @user.username %><br>
-  time_zone: <%= @user.time_zone %>
-
-</p>
