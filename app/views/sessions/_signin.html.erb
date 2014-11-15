@@ -2,7 +2,7 @@
   <%= link_to '#', class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } do %>
     Sign In  <span class='glyphicon glyphicon-collapse-down'></span>
   <% end %>
-  <div class='dropdown-menu' role='menu'>
+  <div class="dropdown-menu signin" role='menu'>
     <fieldset class="signin">
       <%= form_tag '/login', html: { class: "form-horizontal", role: 'form' } do %>
         <div class='form-group'>
@@ -11,11 +11,10 @@
         <div class='form-group'>
           <%= password_field_tag :password, '', placeholder: "Password", class: "form-control" %>
         </div>
-        <%= submit_tag "Let me in!", class: "col-sm-5 btn btn-primary" %>
-        <%= link_to register_path, class: "btn btn-default", role: "button" do %>
-          No account yet?
+        <%= button_tag :submit, class: "form-control btn btn-primary" do %>
+          <span class="glyphicon glyphicon-log-in"></span> Let me in!
         <% end %>
-        
+                
       <% end %>
     </fieldset>
   </div>

@@ -10,6 +10,18 @@
 $navbar-darker-blue: #1E5799;
 $white: #fff;
 
+
+.nav-tabs {
+  margin-top: -20px;
+  > li.active {
+    > a, > a:hover, > a:focus {
+      color: $white;
+      background: { color: $btn-primary-bg; }
+    }
+  }
+}
+
+
 .modal-header {
   color: $white;
   background: { color: $btn-primary-bg; }
@@ -26,7 +38,7 @@ $white: #fff;
 .wrapper {
   position: relative;
   top: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 100%;
   padding: 0px 7px 25px 7px;
   margin-bottom: 40px;
@@ -34,12 +46,11 @@ $white: #fff;
   background: #ecf0f1;
 }
 
-.title_header {
+.jumbo-box {
   position: relative;
   top: -13px;
   width: 100%;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-radius: 5px;
   background: { color: $btn-primary-bg; }
   color: $btn-primary-color;
 
@@ -80,16 +91,16 @@ $white: #fff;
       }
     }
 
-    .open > a {
-      background: { color: $btn-primary-bg; }
-      &:focus {
-      background: { color: $btn-primary-bg; }
+    .open {
+      > a, > a:hover, > a:focus {
+        background: { color: $btn-primary-bg; }
       }
     }
   }
 }
 
 .dropdown-menu {
+  border-radius: 4px;
   font-size: 20px;
   -webkit-box-shadow: 5px 5px 25px 1px #000000;
   box-shadow: 5px 5px 25px 1px #000000;
@@ -107,6 +118,10 @@ $white: #fff;
   }
 }
 
+.glyphicon-log-in {
+  margin-right: 5px;
+}
+
 .signin {
   width: 400px;
   background-color: #bdc3c7;
@@ -114,13 +129,11 @@ $white: #fff;
     width: 85%;
     margin-left: 30px;
     margin-top: 15px;
+
   }
   .btn {
-    margin-left: 30px;
+    margin-top: 0px;
     margin-bottom: 15px;
-  }
-  .btn-default {
-    margin-left: 45px;
   }
 }
 

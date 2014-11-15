@@ -1,15 +1,23 @@
 <section class="wrapper">
   <%= render 'shared/content_title', title: "All Projects" %>
 
+  <div role="tabpanel">
 
-<ul>
-  <% @projects.each do |project| %>
-    <li><%= project.project_name %> [<%= link_to "Like", like_project_path(project), method: 'post' %>]
-      <br>(<%= link_to "show project", project_path(project) %>)
-      <br>(<%= link_to "management", management_project_path(project) %>)
-
-    </li>
-  <% end %>
-</ul>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active" id="project-hiring">
+        <%= link_to "Hiring", projects_path(tab: "hiring"), role: "tab", data: { toggle: "tab" }, remote: true %>
+      </li>
+      <li role="presentation" id="project-in-progress">
+        <%= link_to "In Progress", projects_path(tab: "in-progress"), role: "tab", data: { toggle: "tab" }, remote: true %>
+      </li>
+      <li role="presentation" id="project-finished">
+        <%= link_to "Finished", projects_path(tab: "finished"), role: "tab", data: { toggle: "tab" }, remote: true %>
+      </li>
+    </ul>
+ 
+    <div class="tab-content" id="all-projects">
+      <%= render @projects %>
+    </div>
+  </div>
 
 </section>

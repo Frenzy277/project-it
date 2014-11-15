@@ -15,7 +15,7 @@
       <% end %>
     </li>
     <li>
-      <%= link_to edit_user_path(current_user) do %>
+      <%= link_to user_projects_path do %>
         <span class="glyphicon glyphicon-list-alt"></span> <strong>My portfolio</strong> <span class='badge'><%= current_user.projects.count %></span>
       <% end %>
     </li>

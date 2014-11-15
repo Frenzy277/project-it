@@ -1,0 +1,12 @@
+// Remove class active tab from all tabs
+<% %w(#project-hiring #project-in-progress #project-finished).each do |this| %> 
+  $("<%= this %>").removeClass('active');
+<% end %>
+
+// Add class active to clicked tab
+<% if params[:tab] %>
+  $("#project-<%= params[:tab] %>").addClass('active');
+<% end %>
+
+// Update @projects and render them to template
+$("#all-projects").html('<%= j render @projects %>');

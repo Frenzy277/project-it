@@ -1,0 +1,8 @@
+<ul>
+  <li>
+    <%= project.project_name %> [<%= link_to "Like", like_project_path(project), method: 'post' %>]
+        <br>(<%= link_to "show project", project_path(project) %>)
+        <br>(<%= link_to "management", management_project_path(project) %>)
+
+  </li>
+</ul>

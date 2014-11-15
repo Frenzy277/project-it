@@ -21,4 +21,5 @@ $(document).ready(function() {
     minDate: 0,
     dateFormat: "yy-mm-dd"
   });
+
 });

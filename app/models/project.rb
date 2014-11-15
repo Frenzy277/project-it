@@ -12,4 +12,14 @@ class Project < ActiveRecord::Base
   validates :project_name, presence: true
   sluggable_column :project_name
 
+  def self.based_on_selected_tab(params)
+    if params[:tab] == "in-progress"
+      self.where(status: params[:tab])
+    elsif params[:tab] == "finished"
+      self.where(status: params[:tab])
+    else
+      self.where(status: "hiring")
+    end
+  end
+
 end

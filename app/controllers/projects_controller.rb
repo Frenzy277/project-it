@@ -4,7 +4,12 @@ class ProjectsController < ApplicationController
   before_action :require_member, only: [:management]
 
   def index
-    @projects = Project.all
+    @projects = Project.based_on_selected_tab(params)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
