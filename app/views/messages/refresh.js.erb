@@ -1,0 +1,2 @@
+$("#unread-messages").html("<%= j render partial: 'message', collection: @unread_messages, locals: {mark_read: true} %>");
+$("#read-messages").html("<%= j render partial: 'message', collection: @read_messages, locals: {mark_read: false}%>");

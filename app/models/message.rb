@@ -7,4 +7,8 @@ class Message < ActiveRecord::Base
   def mark_viewed!
     self.update(viewed_at: Time.now)
   end
+
+  def sender
+    User.find(self.sender_id)
+  end
 end

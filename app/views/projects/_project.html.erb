@@ -4,8 +4,8 @@
     <%= link_to like_project_path(project), method: 'post', remote: true do %>
       <i class="fa fa-heart fa-lg"></i>
     <% end %>
-    <span id="project-#{project.id}-likes">
-      <%= project.total_likes %> likes
+    <span id="project-<%= project.id %>-likes">
+      <%= pluralize(project.total_likes, "like") %>
     </span>
   </td>
   
@@ -42,5 +42,5 @@
 </tr>
 
 <!-- new message for -->
-<%= render 'messages/modal_form', project: project %>
+<%= render 'messages/modal_form', recipient: project.manager, project: project %>
 

@@ -10,18 +10,21 @@
         <%= form_for Message.new, remote: true, html: { role: "form" } do |f| %>
           <div class="form-group">
             <%= f.label :recipient_id, "Recipient:", class: "control-label" %>
-            <p class: "form-control-static" style="font-size: 20px;">
-              <span class="label label-primary"><%= project.manager.username %></span>
+            
+            <p class="form-control-static">
+              <span class="label label-primary"><%= recipient.username %></span>
             </p>
-            <%= f.hidden_field :recipient_id, value: project.manager.id %>
+            <%= f.hidden_field :recipient_id, value: recipient.id %>
           </div>
+
+          <% if project %>
+            <%= hidden_field_tag :project_id, project.id %>
+          <% end %>
 
           <div class="form-group">
             <%= f.label :body, "Message:", class: "control-label" %>
             <%= f.text_area :body, class: "form-control" %>
           </div>
-
-          <%= hidden_field_tag :project_id, project.id %>
 
       </div><!-- modal body end-->
       <div class="modal-footer">
@@ -32,3 +35,4 @@
     </div><!-- modal content end-->
   </div><!-- modal dialog end -->
 </div><!-- modal end-->
+

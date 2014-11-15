@@ -71,7 +71,22 @@ thead {
 }
 
 
+// Forms
+
+p.form-control-static {
+  font-size: 20px;
+}
+
+
 // Messages
+
+.row > div.col-sm-12.new-message {
+  margin-bottom: 20px;
+}
+
+p.message-wrapper {
+  word-wrap: break-word;
+}
 
 
 // Project formatting
@@ -146,9 +161,6 @@ thead {
 
 .badge-heart {
   background: { color: $red; }
-  // position: relative;
-  // right: 35px;
-  // bottom: 10px;
 }
 
 

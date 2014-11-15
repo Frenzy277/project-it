@@ -1,3 +1,28 @@
 <section class="wrapper">
   <%= render 'shared/content_title', title: "Messages inbox: #{current_user.username}" %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Unread messages</h3>
+        </div>
+        <div class="panel-body" id="unread-messages">
+          <%= render partial: 'message', collection: @unread_messages, locals: { mark_read: true } %>
+        </div>
+      </div>
+    </div> <!-- col-sm-6 -->
+
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Read messages</h3>
+        </div>
+        <div class="panel-body" id="read-messages">
+          <%= render partial: 'message', collection: @read_messages, locals: { mark_read: false } %>
+        </div>
+      </div>
+    </div> <!-- col-sm-6 -->
+  </div> <!-- row -->
+
 </section>

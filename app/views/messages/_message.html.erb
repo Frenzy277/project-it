@@ -1,0 +1,31 @@
+<%# mark_read ||= true %>
+<div class="well">
+
+  <div class="row">
+    <div class="col-sm-10">
+      <p class="message-wrapper">
+        <%= message.body %>
+      </p>
+
+      <h4>
+        <%= button_tag "Reply" , class: "label label-primary", data: { toggle: "modal", target: "#new_messageModal" } %>
+      </h4>
+    </div>
+
+    <div class="col-sm-2">
+      <span>
+        <%= link_to read_message_path(message, read: mark_read), method: "post", remote: true do %>
+          <i class="fa fa-eye fa-lg"></i>
+        <% end %>
+   
+      </span>
+      <span>
+        <%= link_to message_path(message), method: "delete", remote: true do %>
+          <i class="fa fa-trash fa-lg"></i>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>
+
+<%= render 'modal_form', recipient: message.sender, project: false %>

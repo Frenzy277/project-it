@@ -1,24 +1,29 @@
 class MessagesController < ApplicationController
   before_action :require_user
-  before_action :set_message, only: [:show, :destroy]
+  before_action :set_message, only: [:read, :destroy]
+  before_action :set_unread_read, only: [:index, :read, :destroy]
 
   def index
-    current_user.mark_unread_messages!
-    @messages = current_user.messages
+    current_user.mark_unviewed_messages!
   end
 
-  def show
-  end
+  def read
+    @message.update(read: params[:read])
 
-  def new
-    @message = Message.new
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'messages/refresh' }
+    end
   end
 
   def create
     # Format JS
+    # binding.pry
+
     @message = Message.new(message_params)
     @message.sender_id = current_user.id
     
+
     if @message.save
 
     else
@@ -27,7 +32,12 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    #@message.destroy
+    @message.destroy
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'messages/refresh' }
+    end
   end
 
   private
@@ -38,6 +48,11 @@ class MessagesController < ApplicationController
 
     def set_message
       @message = Message.find(params[:id])
+    end
+
+    def set_unread_read
+      @unread_messages = current_user.unread_messages
+      @read_messages = current_user.read_messages
     end
 
 end

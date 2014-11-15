@@ -22,21 +22,29 @@ class User < ActiveRecord::Base
     self.projects.count
   end
 
-  def unread_messages
+  def unviewed_messages
     self.messages.where(viewed_at: nil)
   end
 
-  def unread_messages?
-    unread_messages.any?
+  def unviewed_messages?
+    unviewed_messages.any?
   end
 
-  def total_new_messages
-    unread_messages.count
+  def total_unviewed_messages
+    unviewed_messages.count
   end
 
-  def mark_unread_messages!
-    unread_messages.each do |msg|
+  def mark_unviewed_messages!
+    unviewed_messages.each do |msg|
       msg.mark_viewed!
     end
+  end
+
+  def unread_messages
+    self.messages.where(read: false)
+  end
+
+  def read_messages
+    self.messages.where(read: true)
   end
 end

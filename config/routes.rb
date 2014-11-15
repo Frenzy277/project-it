@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 
+
+
   resources :users, only: [:create, :show, :edit, :update]
-  resources :messages, only: [:index, :show, :new, :create, :destroy]
+  resources :messages, only: [:index, :create, :destroy] do
+    member do
+      post 'read'
+    end
+  end
 
   namespace :user do
     resources :projects, only: :index

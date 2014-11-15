@@ -3,8 +3,8 @@
     Messages <span class="glyphicon glyphicon-envelope"></span>
 
     <!-- widget for new messages -->
-    <% if current_user.unread_messages? %>
-      <span class="badge badge-heart"><%= current_user.total_new_messages %></span>
+    <% if current_user.unviewed_messages? %>
+      <span class="badge badge-heart"><%= current_user.total_unviewed_messages %></span>
     <% end %>
 
   <% end %>
