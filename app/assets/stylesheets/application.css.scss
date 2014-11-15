@@ -9,6 +9,7 @@
 @import "font-awesome";
 $navbar-darker-blue: #1E5799;
 $white: #fff;
+$red: red;
 
 
 .nav-tabs {
@@ -46,32 +47,31 @@ $white: #fff;
   background: #ecf0f1;
 }
 
-.jumbo-box {
-  position: relative;
-  top: -13px;
-  width: 100%;
-  border-radius: 5px;
-  background: { color: $btn-primary-bg; }
-  color: $btn-primary-color;
-
-  .text {
-    position: relative;
-    top: 5px;
-    text-align: center;
-    vertical-align: middle;
-    left: 10%;
-  }
-}
-
 // Breadcrumb
 
 .breadcrumb {
+  position: relative;
+  top: -13px;
+  border-radius: 5px;
   font-size: 35px;
   margin-top: 20px;
   color: $white;
   background: { color: $btn-primary-bg; }
 }
 
+// Tables
+
+table {
+  margin-left: 1px;
+}
+
+thead {
+  color: $white;
+  background: { color: $btn-primary-bg; }
+}
+
+
+// Messages
 
 
 // Project formatting
@@ -110,7 +110,7 @@ $white: #fff;
 
 .dropdown-menu {
   border-radius: 4px;
-  font-size: 20px;
+  font-size: 15px;
   -webkit-box-shadow: 5px 5px 25px 1px #000000;
   box-shadow: 5px 5px 25px 1px #000000;
   strong {
@@ -118,12 +118,12 @@ $white: #fff;
   }
   .badge {
     position: relative;
-    bottom: 3px;
-    margin-left: 15px;
+    top: 2px;
   }
   #jobs_count {
-    background-color: red;
-    margin-left: 60px;
+    position: relative;
+    top: 2px;
+    background-color: $red;
   }
 }
 
@@ -136,6 +136,19 @@ $white: #fff;
 .glyphicon-home {
   font-size: 30px;
   color: $white;
+}
+
+.fa-heart {
+  color: $red;
+}
+
+// Badges
+
+.badge-heart {
+  background: { color: $red; }
+  // position: relative;
+  // right: 35px;
+  // bottom: 10px;
 }
 
 
@@ -187,6 +200,8 @@ $white: #fff;
   clear: both;
 }
 
+
+
 // jQuery datepicker
 
 .ui-widget-header {
@@ -215,6 +230,10 @@ $white: #fff;
 
 
 // Error formatting
+
+.errors {
+  margin-bottom: 20px;
+}
 
 #error_explanation { 
   color: $state-danger-text;

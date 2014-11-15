@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   include SluggableGem
+  
   belongs_to :manager, class_name: "User", foreign_key: "manager_id"
 
   has_many :user_projects
@@ -20,6 +21,10 @@ class Project < ActiveRecord::Base
     else
       self.where(status: "hiring")
     end
+  end
+
+  def total_likes
+    self.likes.count
   end
 
 end

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :management, :edit, :update, :destroy, :like]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :like, :management]
   before_action :require_user
   before_action :require_member, only: [:management]
 
@@ -22,7 +22,6 @@ class ProjectsController < ApplicationController
     @project.manager = current_user
     @project.team = true if params[:project][:team]
  
-
     if @project.save
       flash[:success] = "Project has been created."
       redirect_to management_project_url(@project)
@@ -47,8 +46,21 @@ class ProjectsController < ApplicationController
   end
 
   def like
-    like = Like.create(user_id: current_user.id, likeable: @project, like: true)
-    redirect_to :back
+    @like = Like.create(user_id: current_user.id, likeable: @project, like: true)
+
+    respond_to do |format|
+      format.html do 
+        if @like.valid?
+          flash[:success] = "Your like has been counted."
+        else
+          flash[:danger] = "You already liked #{project.project_name}."
+        end
+
+        redirect_to :back
+      end
+      
+      format.js
+    end
   end
 
   private

@@ -1,11 +1,17 @@
 <li>
   <%= link_to messages_path do %>
-    Messages <span class="glyphicon glyphicon-envelope"></span> <span class='badge'></span>
+    Messages <span class="glyphicon glyphicon-envelope"></span>
+
+    <!-- widget for new messages -->
+    <% if current_user.unread_messages? %>
+      <span class="badge badge-heart"><%= current_user.total_new_messages %></span>
+    <% end %>
+
   <% end %>
 </li>
 
 <li class="dropdown">
-  <%= link_to "#", class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } do %>
+  <%= link_to "#", class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, "aria-expanded" => false do %>
     Projects <span class="glyphicon glyphicon-collapse-down"></span>
   <% end %>
   <ul class="dropdown-menu" role="menu">
@@ -16,12 +22,12 @@
     </li>
     <li>
       <%= link_to user_projects_path do %>
-        <span class="glyphicon glyphicon-list-alt"></span> <strong>My portfolio</strong> <span class='badge'><%= current_user.projects.count %></span>
+        <span class="glyphicon glyphicon-list-alt"></span> <strong>My portfolio</strong> <span class="badge pull-right"><%= current_user.total_projects %></span>
       <% end %>
     </li>
     <li>
       <%= link_to user_jobs_path do %>
-        <span class="glyphicon glyphicon-tasks"></span> <strong>My jobs</strong><span class='badge' id="jobs_count"><%= current_user.jobs.count %></span>
+        <span class="glyphicon glyphicon-tasks"></span> <strong>My jobs</strong><span class="badge pull-right" id="jobs_count"><%= current_user.total_jobs %></span>
       <% end %>
     </li>
     <li class="divider"></li>
@@ -35,7 +41,7 @@
 
 
 <li class="dropdown">
-  <%= link_to "#", class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } do %>
+  <%= link_to "#", class: "dropdown-toggle", role: "button", data: { toggle: "dropdown" }, "aria-expanded" => false do %>
     <%= current_user.username %>  <span class="glyphicon glyphicon-collapse-down"></span>
   <% end %>
   <ul class="dropdown-menu" role="menu">

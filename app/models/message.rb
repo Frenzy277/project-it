@@ -3,4 +3,8 @@ class Message < ActiveRecord::Base
 
   validates :recipient_id, :sender_id, :body, presence: true
 
+
+  def mark_viewed!
+    self.update(viewed_at: Time.now)
+  end
 end

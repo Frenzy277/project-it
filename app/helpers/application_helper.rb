@@ -5,10 +5,8 @@ module ApplicationHelper
   end
 
   def close_button(alert_or_modal)
-    content_tag(:button, 
-                content_tag(:span, nil, class: "glyphicon glyphicon-remove-circle"), 
-                class: "close", 
-                data: { dismiss: alert_or_modal }, 
-                aria: { hidden: "true" })
+    button_tag(:button, class: "close", data: { dismiss: alert_or_modal }, aria: { hidden: "true" }) do
+      '&times;'.html_safe
+    end
   end
 end

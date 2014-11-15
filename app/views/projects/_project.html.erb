@@ -1,8 +1,46 @@
-<ul>
-  <li>
-    <%= project.project_name %> [<%= link_to "Like", like_project_path(project), method: 'post' %>]
-        <br>(<%= link_to "show project", project_path(project) %>)
-        <br>(<%= link_to "management", management_project_path(project) %>)
+<tr>
+  <!-- Like it -->
+  <td style="text-align: center;">
+    <%= link_to like_project_path(project), method: 'post', remote: true do %>
+      <i class="fa fa-heart fa-lg"></i>
+    <% end %>
+    <span id="project-#{project.id}-likes">
+      <%= project.total_likes %> likes
+    </span>
+  </td>
+  
+  <!-- Project name -->
+  <td>
+    <%= project.project_name %>
+  </td>
 
-  </li>
-</ul>
+  <!-- Members -->
+  <% project.users.each do |member| %>
+  <td>
+    <%= member.username %>
+  </td>
+  <% end %>
+
+  <!-- Status -->
+  <td>
+    <%= project.status %>
+    <%= button_tag :button, class: "btn btn-warning btn-xs pull-right", data: { toggle: "modal", target: "#new_messageModal", whatever: project.manager.username }, id: "project-message-#{project.id}" do %>
+      Join the team
+    <% end %>
+  </td>
+
+  <!-- Start-date -->
+  <td>
+    <%= project.created_at %>
+  </td>
+
+  <!-- Estimated end-date -->
+  <td>
+    <%= project.end_date %>
+  </td>
+
+</tr>
+
+<!-- new message for -->
+<%= render 'messages/modal_form', project: project %>
+

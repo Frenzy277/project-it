@@ -1,6 +1,8 @@
 <section class="wrapper">
   <%= render 'shared/content_title', title: "All Projects" %>
 
+  <div class="errors"></div>
+  
   <div role="tabpanel">
 
     <ul class="nav nav-tabs">
@@ -15,9 +17,21 @@
       </li>
     </ul>
  
-    <div class="tab-content" id="all-projects">
-      <%= render @projects %>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Like-it</th>
+          <th>Project name</th>
+          <th>Members</th>
+          <th>Status</th>
+          <th>Started at</th>
+          <th>Finishing at</th>
+        </tr>
+      </thead>
+      <tbody class="tab-content" id="all-projects">
+        <%= render @projects %>
+      </tbody>
+    </table>
   </div>
 
 </section>

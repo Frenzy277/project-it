@@ -1,7 +1,10 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+  
+  <!-- Github fork -->
   <%= link_to "https://github.com/frenzy277/project-it" do %>
     <%= image_tag "http://aral.github.com/fork-me-on-github-retina-ribbons/right-red@2x.png", class: "fork_github", alt: "Fork me on GitHub" %>
   <% end %>
+  
   <div class="container">
     <div class="navbar-header">
       <span class="logo">
@@ -12,12 +15,6 @@
     </div>
     <div class="navbar-left">
       <ul class='nav navbar-nav'>
-        <li>
-          <%= link_to root_path do %>
-            <span class="glyphicon glyphicon-home"></span>
-          <% end %>
-        </li>
-
         <li>
           <%= link_to "http://www.gotealeaf.com" do %>
             <%= tealeaf %>

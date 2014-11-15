@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :destroy]
 
   def index
+    current_user.mark_unread_messages!
     @messages = current_user.messages
   end
 
@@ -14,17 +15,15 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @recipient = User.find_by(username: params[:username])
+    # Format JS
+    @message = Message.new(message_params)
+    @message.sender_id = current_user.id
+    
+    if @message.save
 
-    if @recipient
-      @message = Message.new(message_params)
-      @message.sender_id = current_user.id
-
-      if @message.save
-      else
-      end
     else
-    end
+      render :new
+    end    
   end
 
   def destroy
