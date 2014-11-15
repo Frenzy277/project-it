@@ -63,6 +63,15 @@ $white: #fff;
   }
 }
 
+// Breadcrumb
+
+.breadcrumb {
+  font-size: 35px;
+  margin-top: 20px;
+  color: $white;
+  background: { color: $btn-primary-bg; }
+}
+
 
 
 // Project formatting
@@ -118,9 +127,17 @@ $white: #fff;
   }
 }
 
+
+// Glyphicons & FA-icons
 .glyphicon-log-in {
   margin-right: 5px;
 }
+
+.glyphicon-home {
+  font-size: 30px;
+  color: $white;
+}
+
 
 .signin {
   width: 400px;
@@ -193,10 +210,14 @@ $white: #fff;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#89d7ff',GradientType=0 ); /* IE6-8 */
 }
 
+
+
+
+
 // Error formatting
 
 #error_explanation { 
-  color: #f00;
+  color: $state-danger-text;
   ul {
     list-style: none;
     margin: 0 0 18px 0;

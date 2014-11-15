@@ -1,4 +1,10 @@
 <div class="jumbo-box">
-  <h1><span class="text"><%= title %></span></h1>
-  <hr>
+  <ol class="breadcrumb">
+    <li>
+      <%= link_to root_path do %>
+        <span class="glyphicon glyphicon-home"></span>
+      <% end %>
+    </li>
+    <li><%= title %></li>
+  </ol>
 </div>
