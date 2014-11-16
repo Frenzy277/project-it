@@ -1,46 +1,21 @@
-<tr>
-  <!-- Like it -->
-  <td style="text-align: center;">
-    <%= link_to like_project_path(project), method: 'post', remote: true do %>
-      <i class="fa fa-heart fa-lg"></i>
-    <% end %>
-    <span id="project-<%= project.id %>-likes">
-      <%= pluralize(project.total_likes, "like") %>
-    </span>
-  </td>
-  
+<tr>  
   <!-- Project name -->
-  <td>
-    <%= project.project_name %>
-  </td>
+  <td><%= project.project_name %></td>
 
+  <td><p style="font-size: 16px;"><%= link_to "See this project", project_path(project), class: "label label-danger" %></p></td>
   <!-- Members -->
   <% project.users.each do |member| %>
-  <td>
-    <%= member.username %>
-  </td>
+  <td><%= member.username %></td>
   <% end %>
 
   <!-- Status -->
-  <td>
-    <%= project.status %>
-    <%= button_tag :button, class: "btn btn-warning btn-xs pull-right", data: { toggle: "modal", target: "#new_messageModal", whatever: project.manager.username }, id: "project-message-#{project.id}" do %>
-      Join the team
-    <% end %>
-  </td>
+  <td><%= project.status %></td>
 
   <!-- Start-date -->
-  <td>
-    <%= project.created_at %>
-  </td>
+  <td><%= pretty_time(project.created_at) %></td>
 
   <!-- Estimated end-date -->
-  <td>
-    <%= project.end_date %>
-  </td>
-
+  <td><%= pretty_time(project.end_date) %></td>
 </tr>
 
-<!-- new message for -->
-<%= render 'messages/modal_form', recipient: project.manager, project: project %>
 

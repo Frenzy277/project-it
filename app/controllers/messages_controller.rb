@@ -22,13 +22,21 @@ class MessagesController < ApplicationController
 
     @message = Message.new(message_params)
     @message.sender_id = current_user.id
-    
+    @message.save
+    @unread_messages = current_user.unread_messages
 
-    if @message.save
-
-    else
-      render :new
-    end    
+    respond_to do |format|
+      format.html do
+        if @message.valid?
+          flash[:success] = "Message sent."
+        else
+          flash[:danger] = "Message body can not be blank."
+        end
+        redirect_to :back
+      end
+      format.js
+    end
+       
   end
 
   def destroy

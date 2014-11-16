@@ -1,31 +1,94 @@
-<%# mark_read ||= true %>
-<div class="well">
+<div class="modal fade" id="msg-<%= message.id %>-replyModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= close_button('modal') %>
+        <h4 class="modal-title" id="messageModalLabel">New message</h4>
+      </div><!-- modal header end -->
+      <div class="modal-body">
 
-  <div class="row">
-    <div class="col-sm-10">
-      <p class="message-wrapper">
-        <%= message.body %>
-      </p>
+        <%= form_for Message.new, remote: true, html: { role: "form", id: "msg-#{message.id}-replyForm" } do |f| %>
+          <div class="form-group">
+            <%= f.label :recipient_id, "Recipient:", class: "control-label" %>
+            
+            <p class="form-control-static">
+              <span class="label label-primary"><%= message.sender.username %></span>
+            </p>
+            <%= f.hidden_field :recipient_id, value: message.sender_id %>
+            <%= hidden_field_tag :old_id, message.id %>
+          </div>
 
-      <h4>
-        <%= button_tag "Reply" , class: "label label-primary", data: { toggle: "modal", target: "#new_messageModal" } %>
-      </h4>
-    </div>
+          <div class="form-group">
+            <%= f.label :body, "Message:", class: "control-label" %>
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
 
+      </div><!-- modal body end-->
+      <div class="modal-footer">
+          <%= button_tag "Close", class: 'btn btn-default', data: { dismiss: "modal" } %>
+          <%= f.submit "Send message", class: "btn btn-primary", id: "msg-#{message.id}-replySubmit" %>
+        <% end %>
+
+        <script type="text/javascript">
+          $('#msg-<%= message.id %>-replySubmit').click(function(ev){
+            ev.preventDefault();
+            $('#msg-<%= message.id %>-replyForm').trigger('submit.rails');
+          });
+        </script>
+      </div><!-- modal footer end-->
+    </div><!-- modal content end-->
+  </div><!-- modal dialog end -->
+</div><!-- modal end-->
+
+
+<div class="panel panel-info panel-msg">
+  <div class="panel-heading special" id="msg-<%= message.id %>-heading">
+    <h3 class="panel-title">
+      <span class="pull-left">From: <%= message.sender.username %></span>
+      <span class="pull-right">Sent at: <%= message.created_at %></span>
+      <div class="clearfix"></div>
+    </h3>
+  </div>
+
+  <div class="panel-body" id="msg-<%= message.id %>-body" style="display: none;">
+    <div class="row">
+      <div class="col-sm-10 right-border">
+        
+          <p class="message-wrapper">
+            <%= message.body %>
+          </p>
+
+          <hr>
+          <h4>
+            <%= button_tag "Reply" , class: "label label-primary", data: { toggle: "modal", target: "#msg-#{message.id}-replyModal" } %>
+          </h4>
+          
+      </div>
     <div class="col-sm-2">
-      <span>
-        <%= link_to read_message_path(message, read: mark_read), method: "post", remote: true do %>
-          <i class="fa fa-eye fa-lg"></i>
-        <% end %>
-   
-      </span>
-      <span>
-        <%= link_to message_path(message), method: "delete", remote: true do %>
-          <i class="fa fa-trash fa-lg"></i>
-        <% end %>
-      </span>
+        <span>
+          <%= link_to read_message_path(message, read: mark_read), method: "post", remote: true do %>
+            <i class="fa fa-eye fa-lg"></i>
+          <% end %>
+     
+        </span>
+        <span>
+          <%= link_to message_path(message), method: "delete", remote: true do %>
+            <i class="fa fa-trash fa-lg"></i>
+          <% end %>
+        </span>
+        
+    </div>
     </div>
   </div>
+
 </div>
 
-<%= render 'modal_form', recipient: message.sender, project: false %>
+<script type="text/javascript">
+  $('#msg-<%= message.id %>-heading').click(function(){
+    $('#msg-<%= message.id %>-body').slideToggle('slow');
+  });
+  // $(document).on('click', '#msg-<%= message.id %>-heading', function(){
+  //   $('#msg-<%= message.id %>-body').slideToggle('slow');
+  // });
+</script>
+

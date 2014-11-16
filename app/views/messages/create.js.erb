@@ -1,2 +1,7 @@
-$("#new_messageModal").modal('hide');
-$("#project-message-<%= params[:project_id] %>").removeClass('btn-warning').addClass('btn-danger disabled').html("Message sent");
+<% if params[:old_id] %>
+  $("#msg-<%= params[:old_id] %>-replyModal").modal('hide');
+  $("#unread-messages").html("<%= j render partial: 'message', collection: @unread_messages, locals: {mark_read: true} %>");
+<% elsif params[:project_id] %>
+  $("#msg-hire-Modal").modal('hide');
+  alert("message sent");
+<% end %>

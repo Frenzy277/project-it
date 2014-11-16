@@ -22,7 +22,6 @@ $red: red;
   }
 }
 
-
 .modal-header {
   color: $white;
   background: { color: $btn-primary-bg; }
@@ -58,6 +57,22 @@ $red: red;
   color: $white;
   background: { color: $btn-primary-bg; }
 }
+
+// Panels
+
+.special:hover {
+  color: $white;
+  background: { color: #5bc0de; }
+}
+
+.right-border {
+  border-right: 1px solid silver;
+}
+
+.panel-msg {
+  opacity: 0.9;
+}
+
 
 // Tables
 

@@ -1,0 +1,78 @@
+<section class="wrapper">
+  <%= render 'shared/content_title', title: @project.project_name %>
+
+  <h1>
+    <% @project.categories.each do |category| %>
+      <span class="label label-default"><%= link_to category.name, '#' %></span>
+    <% end %>
+  </h1>
+  <div>
+    <img src="http://powerofsoul.com/wp-content/uploads/2013/11/attract-a-woman.jpg" alt="Lambo 2" class="img-responsive" height="100%" width="100%" style="border-radius: 5px;"/>
+  </div>
+
+  <div class="well">
+    <%= @project.project_name %><br>
+    <%= @project.project_description %><br>
+    <ul>
+    <% @project.users.each do |member| %>
+      <li><%= member.username %></li>
+    <% end %>
+    </ul>
+    <%= pretty_time(@project.created_at) %>
+    <%= pretty_time(@project.end_date) %>
+
+    <% if logged_in? %>
+      <% if @project.status == 'hiring' %>
+
+        <h3>
+          <%= button_tag :button, class: "label label-warning", data: { toggle: "modal", target: "#msg-hire-Modal"} { "Join the team!" } %>
+        </h3>
+
+        <div class="modal fade" id="msg-hire-Modal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <%= close_button('modal') %>
+                <h4 class="modal-title" id="messageModalLabel">New message</h4>
+              </div><!-- modal header end -->
+              <div class="modal-body">
+
+                <%= form_for Message.new, remote: true, html: { role: "form" } do |f| %>
+                  <div class="form-group">
+                    <%= f.label :recipient_id, "Recipient:", class: "control-label" %>
+                    
+                    <p class="form-control-static">
+                      <span class="label label-primary"><%= @project.manager.username %></span>
+                    </p>
+                    <%= f.hidden_field :recipient_id, value: @project.manager.id %>
+                    <%= hidden_field_tag :project_id, @project.id %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :body, "Message:", class: "control-label" %>
+                    <%= f.text_area :body, class: "form-control" %>
+                  </div>
+
+              </div><!-- modal body end-->
+              <div class="modal-footer">
+                  <%= button_tag "Close", class: 'btn btn-default', data: { dismiss: "modal" } %>
+                  <%= f.submit "Send message", class: "btn btn-primary" %>
+                <% end %>
+              </div><!-- modal footer end-->
+            </div><!-- modal content end-->
+          </div><!-- modal dialog end -->
+        </div><!-- modal end-->
+
+
+      <% elsif @project.status == 'finished' %>
+        <%= link_to like_project_path(@project), method: 'post', remote: true do %>
+          <i class="fa fa-heart fa-lg"></i>
+        <% end %>
+        <span id="project-<%= @project.id %>-likes">
+          <%= pluralize(@project.total_likes, "like") %>
+        </span>
+      <% end %>
+      
+    <% end %>
+  </div>
+</section>
