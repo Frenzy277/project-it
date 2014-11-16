@@ -1,0 +1,21 @@
+<section class="wrapper">
+  <%= render 'shared/content_title', title: "Project portfolio" %>
+
+  <div class="well">
+
+    <% current_user.projects.each do |project| %>
+      <%= link_to management_project_path(project), class: "thumbnail" do %>
+        
+        <img src="http://funmozar.com/wp-content/uploads/2014/10/lamborghini-image.jpg" alt=".." class="img-responsive" height="100%" width="100%"/>
+
+        <span>Project: <%= project.project_name %></span><br>
+        <span>Status: <%= project.status %></span>
+        
+      <% end %>
+    <% end %>
+
+
+
+    <div class="clearfix"></div>
+  </div>
+</section>

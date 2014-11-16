@@ -183,6 +183,10 @@ p.message-wrapper {
   text-decoration: none;
 }
 
+.badge-info {
+  background: { color: $btn-info-bg; }
+}
+
 
 .signin {
   width: 400px;
@@ -261,8 +265,22 @@ p.message-wrapper {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#89d7ff',GradientType=0 ); /* IE6-8 */
 }
 
+// Thumbnail
 
+a.thumbnail {
+  color: black;
+  display: inline-block;
+  width: 242px;
+  height: 200px;
+  margin: 0px 13px 25px 12px;
+  text-decoration: none;
+}
 
+// User formatting
+
+span.user > a {
+  margin-right: 15px;
+}
 
 
 // Error formatting

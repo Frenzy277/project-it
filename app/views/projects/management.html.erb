@@ -1,32 +1,90 @@
 <section class="wrapper">
   <%= render 'shared/content_title', title: "Project Board" %>
 
-<ul>
-    <li><%= link_to "Create a job", new_project_job_path(@project) %></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-left">Project members: 
+          <% @project.users.each do |user| %>
+            <span class="user"><%= link_to user.username, user_path(user) %></span>
+          <% end %>
+        </span>
+        <div class="clearfix"></div>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p>Project: </p>
+      <p>Description: </p>
+      <p>Categories: </p>
+      <p>Status: </p>
+      <p>Start date: </p>
+      <p>Estimated end date: </p>
+      <br>
 
-<br>
-<br>
-
-<p>jobs</p>
-<ul>
-  <% @project.jobs.each do |job| %>
-    <li><%= job.job_name %>
-      <%= form_for [job, Comment.new] do |f| %>
-        <%= f.label :body %><br />
-        <%= f.text_area :body %>
-        <%= f.submit "Add comment." %>
+      <% if current_user == @project.manager %>
+        <h5>Manager area:</h5>
+        <p>Add member: </p>
+        <%= link_to "Create a job", new_project_job_path(@project) %>
       <% end %>
 
-      <br>
-      <br>
-      <% job.comments.each do |comment| %>
-        <p><%= comment.body %></p>
-      <% end %>
-    </li>
+    </div>
+  </div>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% @project.users.each_with_index do |user, index| %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+          <%= user.username %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapse<%= index %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%= index %>">
+      <div class="panel-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Job #</th><th>Name</th><th>Description</th><th>Status</th><th>Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% user.jobs.each do |job| %>
+              <tr>
+                <td><%= job.id %></td>
+                <td><%= job.job_name %></td>
+                <td><%= job.description %></td>
+                <td><%= job.status %></td>
+                <td><%= pretty_time(job.deadline) %></td>
+              </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
   <% end %>
-</ul>
+</div>
+
+
+  <p>jobs</p>
+  <ul>
+    <% @project.jobs.each do |job| %>
+      <li><%= job.job_name %>
+        <%= form_for [job, Comment.new] do |f| %>
+          <%= f.label :body %><br />
+          <%= f.text_area :body %>
+          <%= f.submit "Add comment." %>
+        <% end %>
+
+        <br>
+        <br>
+        <% job.comments.each do |comment| %>
+          <p><%= comment.body %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </section>
