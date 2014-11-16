@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :jobs, only: :index
   end
 
+  resources :categories, only: [:index, :show]
+
   resources :projects do
     member do
       get 'management'
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
 
     resources :jobs, except: [:index]
   end
+
+
 
   resources :jobs do
     resources :comments, only: [:create]

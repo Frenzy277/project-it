@@ -7,19 +7,7 @@ class MessagesController < ApplicationController
     current_user.mark_unviewed_messages!
   end
 
-  def read
-    @message.update(read: params[:read])
-
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js { render 'messages/refresh' }
-    end
-  end
-
   def create
-    # Format JS
-    # binding.pry
-
     @message = Message.new(message_params)
     @message.sender_id = current_user.id
     @message.save
@@ -36,7 +24,15 @@ class MessagesController < ApplicationController
       end
       format.js
     end
-       
+  end
+
+  def read
+    @message.update(read: params[:read])
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'messages/refresh' }
+    end
   end
 
   def destroy

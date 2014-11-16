@@ -1,12 +1,25 @@
-<tr>  
+<tr>
+  <!-- Categories -->
+  <td>
+    <ul class="no-list">
+      <%= render project.categories %>
+    </ul>
+  </td>
+
   <!-- Project name -->
   <td><%= project.project_name %></td>
 
-  <td><p style="font-size: 16px;"><%= link_to "See this project", project_path(project), class: "label label-danger" %></p></td>
+  <!-- Link to a project -->
+  <td>
+    <p style="font-size: 16px;"><%= link_to "See this project", project_path(project), class: "label label-danger" %></p>
+  </td>
+  
   <!-- Members -->
-  <% project.users.each do |member| %>
-  <td><%= member.username %></td>
-  <% end %>
+  <td>
+    <% project.users.each do |member| %>
+      <%= member.username %>
+    <% end %>
+  </td>
 
   <!-- Status -->
   <td><%= project.status %></td>

@@ -178,6 +178,11 @@ p.message-wrapper {
   background: { color: $red; }
 }
 
+.badge > a {
+  color: $white;
+  text-decoration: none;
+}
+
 
 .signin {
   width: 400px;
@@ -227,7 +232,11 @@ p.message-wrapper {
   clear: both;
 }
 
+// Lists
 
+.no-list {
+  list-style: none;
+}
 
 // jQuery datepicker
 
