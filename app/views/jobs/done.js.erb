@@ -1,1 +1,5 @@
+<%# binding.pry %>
 $('#job-status-<%= @job.id %>').html('<%= @job.status %>');
+<% if params[:row_disappear] == 'yes' %>
+  $('tr#job-row-<%= @job.id %>').hide();
+<% end %>

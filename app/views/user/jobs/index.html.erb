@@ -21,10 +21,12 @@
                   <th>Description</th>
                   <th>Status</th>
                   <th>Deadline</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <%= render partial: 'jobs/job', collection: current_user.jobs_completed %>
+
+                <%= render partial: 'jobs/job', collection: current_user.jobs_in_progress, locals: { show_buttons: "no", row_disappear: "yes" } %>
               </tbody>
             </table>
           </div>
@@ -49,10 +51,11 @@
                   <th>Description</th>
                   <th>Status</th>
                   <th>Deadline</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <%= render partial: 'jobs/job', collection: current_user.jobs_completed %>
+                <%= render partial: 'jobs/job', collection: current_user.jobs_completed, locals: { show_buttons: "no" } %>
               </tbody>
             </table>
           </div>
