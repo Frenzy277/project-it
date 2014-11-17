@@ -1,0 +1,45 @@
+<%= form_for [@project, @job], html: { class: "form-horizontal", role: "form" } do |f| %>
+  <div class="row">
+
+    <div class="form-group">
+      <%= f.label :user_id, "Assign member:", class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.collection_select :user_id, @project.users, :id, :username, { prompt: true }, { class: "form-control" } %>
+      </div>
+    </div>
+
+    <% if !@job.new_record? %>
+      <div class="form-group">
+        <%= f.label :status, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.select :status, job_statuses, { prompt: true }, { class: "form-control" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :job_name, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :job_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_area :description, rows: 3, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :deadline, "Deadline", class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :deadline, class: "date_picker form-control" %>
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-sm-offset-4">
+    <%= f.submit @job.new_record? ? "Create a job" : "Update record", class: "btn btn-primary form-control" %>
+    </div>
+  </div>
+<% end %>

@@ -14,9 +14,18 @@ class User < ActiveRecord::Base
 
   sluggable_column :username
 
-  def total_jobs
-    self.jobs.count
+  def jobs_in_progress
+    self.jobs.where(status: "in progress")
   end
+
+  def total_jobs_in_progress
+    jobs_in_progress.count
+  end
+
+  def jobs_completed
+    self.jobs.where(status: "completed")
+  end
+
 
   def total_projects
     self.projects.count

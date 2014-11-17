@@ -27,12 +27,11 @@ Rails.application.routes.draw do
       post 'like'
     end
 
-    resources :jobs, except: [:index]
+    resources :jobs, except: [:index] do
+      member do
+        post 'done'
+      end
+    end
   end
 
-
-
-  resources :jobs do
-    resources :comments, only: [:create]
-  end
 end

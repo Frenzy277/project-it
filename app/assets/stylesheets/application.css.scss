@@ -73,6 +73,20 @@ $red: red;
   opacity: 0.9;
 }
 
+.panel-body > .row > .col-sm-6 > .row {
+  border: 1px solid silver;
+  padding: 3px 3px 3px 0px;
+  font-size: 16px;
+
+  > .col-sm-4 > span {
+    font-weight: bold;
+  }
+
+  > .message-wrapper {
+
+  }
+}
+
 
 // Tables
 
@@ -90,6 +104,13 @@ thead {
 
 p.form-control-static {
   font-size: 20px;
+}
+
+.radio-buttons {
+  margin-top: 7px;
+  > input {
+    margin-left: 10px;
+  } 
 }
 
 

@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <%= render 'shared/content_title', title: "All jobs" %>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              In progress
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Job #</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Deadline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: 'jobs/job', collection: current_user.jobs_completed %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              Completed
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Job #</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Deadline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: 'jobs/job', collection: current_user.jobs_completed %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- accordion -->
+</div> <!-- wrapper -->

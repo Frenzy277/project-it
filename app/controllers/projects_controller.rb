@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :like, :management]
   before_action :require_user
   before_action :require_member, only: [:management]
+  before_action :require_manager, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.based_on_selected_tab(params)
@@ -37,6 +38,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    if @project.update(project_params)
+      @project.manager = params[:project][:manager_id].to_i
+      flash[:success] = "Successfully updated your project."
+      redirect_to management_project_url(@project)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -66,12 +74,16 @@ class ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:project_name, :project_description, :end_date,
-                                      :github_url, :heroku_url, category_ids: [])
+      params.require(:project).permit(:project_name, :project_description, :status, :end_date,
+                                      :github_url, :heroku_url, :team, category_ids: [])
     end
 
     def set_project
       @project = Project.find_by slug: params[:id]
+    end
+
+    def require_manager
+      restricted_area if logged_in? && @project.manager != current_user
     end
     
 end

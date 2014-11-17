@@ -10,10 +10,25 @@ module ApplicationHelper
     end
   end
 
+  def project_statuses
+    ["hiring","in-progress","finished"]
+  end
+
+  def job_statuses
+    ["in progress","completed"]
+  end
+
   def pretty_time(time)
     if logged_in? && !current_user.time_zone.blank?
       time = time.in_time_zone(current_user.time_zone)
     end
     time.strftime("%m/%d/%Y %I:%M%P %Z")
+  end
+
+  def pretty_date(date)
+    if logged_in? && !current_user.time_zone.blank?
+      date = date.in_time_zone(current_user.time_zone)
+    end
+    date.strftime("%m/%d/%Y")
   end
 end
