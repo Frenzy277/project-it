@@ -54,11 +54,14 @@ class UsersController < ApplicationController
 
     def welcome_message
       title = "Welcome #{@user.username}, Thank you for registering for this awesome project."
-      body = " As first step, I encourage you to create a project (select from Projects dropdown) and manage it from start to end. Also select a nice picture from Internet 
-              and update your project with it. Its recommended to leave your GitHub repo and Heroku url in your project profile. 
-              Registered users can like your finished project and increase your chances to be on the main page. If you dont like it, you can also join
-              another project! Yes, just go to All projects page and check all projects that are hiring. Click on the project name and then
-              click on send a message to a project manager. Now, what are you waiting for?"
+      body = " As first step, I encourage you to create a project (select from Projects dropdown) and manage it from start to end. 
+              Also select a nice picture url from Internet and update your project. Its recommended to leave your GitHub repo and Heroku url 
+              in your project profile that you can manage in project board (management). As project creator/manager you will be able to 
+              create and manage jobs for your team fellow members in case you have selected team project. Registered users can like and 
+              comment on your finished project and increase your chances to be on the main page. If you dont like to work solo, 
+              you can also join another project! Yes, just go to All projects page and check all projects that are hiring. 
+              Click on the project title (links you to public profile) and then click on send a message to a project manager. 
+              Now, what are you waiting for?"
       footer = " Enjoy and have fun. Tomas"
       title + body + footer
     end
