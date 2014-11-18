@@ -1,7 +1,7 @@
 <div class='well span8'>
   <em><%= comment.body %></em>
   <% if params[:controller] == 'users' %>
-    on <%= link_to comment.project.project_name, project_path(comment.project) %>
+    on <%= link_to comment.project.title, project_path(comment.project) %>
   <% end %>
     
   <br/>

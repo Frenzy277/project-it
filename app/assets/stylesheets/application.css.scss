@@ -128,7 +128,7 @@ p.message-wrapper {
 }
 
 span.mark-read, span.mark-delete {
-  weight: 10px;
+  weight: 5px;
   height: 10px;
   padding: 5px;
 }
@@ -229,13 +229,12 @@ dl.row {
     margin-left: 15px;
   }
   .badge {
-    position: relative;
-    top: 2px;
+    margin-left: 15px;
   }
+
   #jobs_count {
-    position: relative;
-    top: 2px;
     background-color: $red;
+    margin-left: 49px;
   }
 }
 
