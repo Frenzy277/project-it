@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   def update
     @project.manager_id = params[:project][:manager_id].to_i
     if @project.update(project_params)      
-      flash[:success] = "Successfully updated your project."
+      flash[:success] = "Successfully updated your project: #{@project.title}."
       redirect_to management_project_url(@project)
     else
       render :edit
@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
         if @like.valid?
           flash[:success] = "Your like has been counted."
         else
-          flash[:danger] = "You already liked #{project.title}."
+          flash[:danger] = "You already liked #{@project.title}."
         end
 
         redirect_to :back
@@ -92,7 +92,7 @@ class ProjectsController < ApplicationController
     end
 
     def require_manager
-      restricted_area if logged_in? && @project.manager != current_user
+      restricted_area unless logged_in? && @project.manager == current_user
     end
     
 end

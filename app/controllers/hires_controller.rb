@@ -10,11 +10,16 @@ class HiresController < ApplicationController
     user = User.find_by username: params[:username]
 
     if user
-      @project.users << user
-      flash[:success] = "User #{user.username} was added to project #{@project.title}"
-      redirect_to management_project_url(@project)
+      if !@project.users.include?(user)
+        @project.users << user
+        flash[:success] = "User #{user.username} was added to project #{@project.title}"
+        redirect_to management_project_url(@project)
+      else
+        flash.now[:danger] = "User #{user.username} is already a member of project: #{@project.title}"
+        render :new
+      end
     else
-      flash[:danger] = "Incorrect username."
+      flash.now[:danger] = "Incorrect username."
       render :new
     end
   end
