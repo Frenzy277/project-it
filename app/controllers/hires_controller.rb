@@ -11,7 +11,7 @@ class HiresController < ApplicationController
 
     if user
       @project.users << user
-      flash[:success] = "User #{user.username} was added to project #{@project.project_name}"
+      flash[:success] = "User #{user.username} was added to project #{@project.title}"
       redirect_to management_project_url(@project)
     else
       flash[:danger] = "Incorrect username."
