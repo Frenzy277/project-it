@@ -1,10 +1,10 @@
-<section class="wrapper">
-  <%= render 'shared/content_title', title: "Project Board" %>
+<div class="wrapper">
+  <%= render 'shared/content_title', title: "#{@project.team? ? "Team" : "Solo"} Project - Board" %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-left">Project members: 
+        <span class="pull-left">Members: 
           <% @project.users.each do |user| %>
             <span class="user"><%= link_to user.username, user_path(user) %></span>
           <% end %>
@@ -15,40 +15,63 @@
     
     <div class="panel-body">
       <div class="row">
-        
-       <article class="col-sm-6">
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Project:</span></div>
-            <div class="message-wrapper col-sm-8"><%= @project.project_name %></div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Description:</span></div>
-            <p class="message-wrapper col-sm-8"><%= @project.project_description %></p>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Categories:</span></div>
-            <p class="message-wrapper col-sm-8"><%= @project.categories.each(&:name) %></p>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Status:</span></div>
-            <p class="message-wrapper col-sm-8"><%= @project.status %></p>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Start date:</span></div>
-            <p class="message-wrapper col-sm-8"><%= pretty_date @project.created_at %></p>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Estimated end date:</span></div>
-            <p class="message-wrapper col-sm-8"><%= pretty_date @project.end_date %></p>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Github repo:</span></div>
-            <p class="message-wrapper col-sm-8"><%= @project.github_url %></p>
-          </div>
-          <div class="row">
-            <div class="col-sm-4"><span class="pull-right">Heroku:</span></div>
-            <p class="message-wrapper col-sm-8"><%= @project.heroku_url %></p>
-          </div>
+      
+        <!-- project info panel -->
+        <article class="col-sm-6">
+          
+          <dl class="row">
+            <dt class="col-sm-4">Title</dt>
+            <dd class="col-sm-8"><%= @project.title %></dd>
+          </dl>
+          
+          <dl class="row">
+            <dt class="col-sm-4">Manager</dt>
+            <dd class="col-sm-8"><%= @project.manager.username %></dd>
+          </dl>
+          
+          <dl class="row">
+            <dt class="col-sm-4">Description</dt>
+            <dd class="col-sm-8"><%= @project.description %></dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4">Categories</dt>
+            <dd class="col-sm-8">
+              <%= render @project.categories %>
+            </dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8"><%= @project.status %></dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4">Start date</dt>
+            <dd class="col-sm-8"><%= pretty_date(@project.created_at) %></dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4">End date</dt>
+            <dd class="col-sm-8"><%= pretty_date(@project.end_date) %></dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4"><i class="fa fa-github fa-lg"></i> GitHub</dt>
+            <dd class="col-sm-8"><%= fix_url(@project.github_url) %></dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4">Heroku</dt>
+            <dd class="col-sm-8"><%= fix_url(@project.heroku_url) %></dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-4">Project profile</dt>
+            <dd class="col-sm-8"><%= link_to "here", project_path(@project) %></dd>
+          </dl>
+
+          
           <br>
 
           <% if current_user == @project.manager %>
@@ -56,18 +79,23 @@
             <div class="panel-heading">
               <h4 class="panel-title">Manager area:</h4>
             </div>
-            <div class="panel-body">
-              <%= link_to "Add member", '', class: "btn btn-success" %>
+            <div class="panel-body panel-manager-area">
+              <% if @project.team? %>
+                <%= link_to "Add member", new_project_hire_path(@project), class: "btn btn-success" %>
+              <% end %>              
               <%= link_to "Create a job", new_project_job_path(@project), class: "btn btn-warning" %>
-              <%= link_to "Edit project", edit_project_path(@project), class: "btn btn-danger" %>
-              <%= link_to "Delete project", project_path(@project), method: "delete", class: "btn btn-danger" %>
+              <%= link_to "Edit project", edit_project_path(@project), class: "btn btn-info" %>
+              <%= link_to "Delete project", project_path(@project), method: "delete", class: "btn btn-danger", data: { confirm: "Are you sure? This action can not be undone." } %>
             </div>
           </div>
           <% end %>
         </article>
 
+        <!-- project image panel -->
         <aside class="col-sm-6">
-          <img src="" alt="none">
+          <div class="project-thumbnail">
+            <%= image_tag(@project.image_url, alt: "Project-IT!", class: "img-responsive") %>
+          </div>
         </aside>
 
                
@@ -76,42 +104,41 @@
   </div> <!-- panel panel-default -->
 
 
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <% @project.users.each_with_index do |user, index| %>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="heading<%= index %>">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
-          <%= user.username %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapse<%= index %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%= index %>">
-      <div class="panel-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Job #</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Deadline</th>
-              <% if current_user == @project.manager %>
-                <th>Actions</th>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <% @project.users.each_with_index do |user, index| %>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading<%= index %>">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+            <%= user.username %>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= index %>" class="panel-collapse collapse <%= 'in' if user == current_user %>" role="tabpanel" aria-labelledby="heading<%= index %>">
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="5%">Job #</th>
+                <th width="10%">Name</th>
+                <th width="40%">Description</th>
+                <th width="20%">Status</th>
+                <th width="10%">Deadline</th>
+                <% if current_user == @project.manager %>
+                  <th width="15%">Actions</th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <% user.project_jobs(@project).each do |job| %>
+                <%= render 'jobs/job', job: job %>
               <% end %>
-            </tr>
-          </thead>
-          <tbody>
-            <% user.jobs.each do |job| %>
-              <%= render 'jobs/job', job: job %>
-            <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-  <% end %>
-</div>
+    <% end %>
+  </div> <!-- accordion -->
 
-
-</section>
+</div> <!-- wrapper -->

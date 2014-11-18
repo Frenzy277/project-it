@@ -1,3 +1,6 @@
+<% if current_user.admin? %>
+  <li><%= link_to "New category", new_category_path %></li>
+<% end %>
 <li>
   <%= link_to messages_path do %>
     Messages <span class="glyphicon glyphicon-envelope"></span>

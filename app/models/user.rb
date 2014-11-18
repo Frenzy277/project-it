@@ -26,6 +26,13 @@ class User < ActiveRecord::Base
     self.jobs.where(status: "completed")
   end
 
+  def project_jobs(project)
+    self.jobs.where(project_id: project.id)
+  end
+
+  def projects_finished
+    self.projects.where(status: "finished")
+  end
 
   def total_projects
     self.projects.count
@@ -55,5 +62,9 @@ class User < ActiveRecord::Base
 
   def read_messages
     self.messages.where(read: true)
+  end
+
+  def admin?
+    self.admin == true
   end
 end

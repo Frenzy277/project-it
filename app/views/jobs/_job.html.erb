@@ -1,21 +1,22 @@
-<% show_buttons ||= "yes" %>
 <% row_disappear ||= "no" %>
 <tr id="job-row-<%= job.id %>">
   <td><%= job.id %></td>
-  <td><%= job.job_name %></td>
+  <td><%= job.name %></td>
   <td><%= job.description %></td>
   <td>
     <span class="pull-left" id="job-status-<%= job.id %>">
       <%= job.status %>
     </span>
     <span class="pull-right">
-      <%= link_to "Mark as completed", done_project_job_path(job.project, job, row_disappear: row_disappear), class: "label label-warning", role: "button", method: "post", remote: true %>
+      <% if job.status != "completed" %>
+        <%= link_to "Mark as completed", done_project_job_path(job.project, job, row_disappear: row_disappear), id: "job-#{job.id}-mark-as-completed", class: "label label-warning", role: "button", method: "post", remote: true %>
+      <% end %>      
     </span>
     <div class="clearfix"></div>
   </td>
   <td><%= pretty_date(job.deadline) %></td>
 
-  <% if (current_user == job.project.manager) || show_buttons == "yes" %>
+  <% if (current_user == job.project.manager) %>
   <td>
     <div class='panel'>
       <%= link_to "Edit", edit_project_job_path(job.project, job), class: "badge" %>

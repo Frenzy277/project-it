@@ -12,15 +12,7 @@ $white: #fff;
 $red: red;
 
 
-.nav-tabs {
-  margin-top: -20px;
-  > li.active {
-    > a, > a:hover, > a:focus {
-      color: $white;
-      background: { color: $btn-primary-bg; }
-    }
-  }
-}
+
 
 .modal-header {
   color: $white;
@@ -73,8 +65,7 @@ $red: red;
   opacity: 0.9;
 }
 
-.panel-body > .row > .col-sm-6 > .row {
-  border: 1px solid silver;
+.panel-body > .row > article.col-sm-6 > .row {
   padding: 3px 3px 3px 0px;
   font-size: 16px;
 
@@ -82,9 +73,10 @@ $red: red;
     font-weight: bold;
   }
 
-  > .message-wrapper {
+}
 
-  }
+.panel-manager-area > a {
+  margin: 5px 8px 5px 8px;
 }
 
 
@@ -98,6 +90,13 @@ thead {
   color: $white;
   background: { color: $btn-primary-bg; }
 }
+
+td > p > .label-danger {
+  font-size: 14px;
+} 
+
+ 
+
 
 
 // Forms
@@ -124,12 +123,62 @@ p.message-wrapper {
   word-wrap: break-word;
 }
 
+.label-hire {
+  font-size: 14px;
+}
+
+span.mark-read, span.mark-delete {
+  weight: 10px;
+  height: 10px;
+  padding: 5px;
+}
+
+// Categories
+
+h3.categories {
+  font-family: 'Bangers', sans-serif;
+  letter-spacing: 2px;
+  text-align: center;
+  color: $white;
+}
 
 // Project formatting
 
 .buttons > button {
   width: 49.7%;
   height: 200px;
+}
+
+span.portfolio-project-image {
+  position: absolute;
+  padding-right: 4px;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+ul.project-info {
+  position: absolute;
+  top: 155px;
+  left: -30px;
+}
+
+dl > dt {
+  background: #5f9be3;
+  color: $white;
+  font-weight: bold;
+  padding: 5px;
+}
+
+dl > dd {
+  padding: 5px;
+  word-wrap: break-word;
+  font-weight: bold;
+}
+
+dl.row {
+  margin-bottom: 2px;
 }
 
 // Navigation, top, sign in form
@@ -158,6 +207,18 @@ p.message-wrapper {
     }
   }
 }
+
+.nav-tabs {
+  margin-top: -20px;
+  > li.active {
+    > a, > a:hover, > a:focus {
+      color: $white;
+      background: { color: $btn-primary-bg; }
+    }
+  }
+}
+
+// Dropdowns
 
 .dropdown-menu {
   border-radius: 4px;
@@ -189,9 +250,22 @@ p.message-wrapper {
   color: $white;
 }
 
+.move-heart {
+  color: $red;
+  position: relative;
+  top: 170px;
+  left: 200px;
+  > span {
+    position: relative;
+    right: 7px;
+    bottom: 2px;
+  }
+}
+
 .fa-heart {
   color: $red;
 }
+
 
 // Badges
 
@@ -253,10 +327,6 @@ p.message-wrapper {
   border: 1px dashed silver;
 }
 
-.clearfix {
-  clear: both;
-}
-
 // Lists
 
 .no-list {
@@ -289,13 +359,92 @@ p.message-wrapper {
 // Thumbnail
 
 a.thumbnail {
+  position: relative;
   color: black;
   display: inline-block;
   width: 242px;
   height: 200px;
-  margin: 0px 13px 25px 12px;
+  margin: 12px 12px 12px 7px;
   text-decoration: none;
+  -webkit-box-shadow: 0 2px 5px 1px #000000;
+  box-shadow: 0 2px 5px 1px #000000;
+  &:hover {
+    -webkit-box-shadow: 0 0 10px 1px #000000;
+    box-shadow: 0 0 10px 1px #000000;
+  }
+
+  > span.category-projects-count {
+    position: absolute;
+    top: 170px;
+    left: 111px;
+    background: { color: $btn-primary-bg }
+  }
 }
+
+// Marketing
+
+.marketing-heading {
+  font-family: Bangers, sans-serif;
+  letter-spacing: 1px;
+  position: relative;
+  top: 20px;
+  left: 130px;
+
+  > .left {
+
+  position: relative;
+  }
+
+  > .middle {
+
+  position: relative;
+    left: -5px;
+  }
+
+  > .right {
+
+  position: relative;
+  }
+
+}
+
+.marketing-circle {
+  color: $white;
+  border: 2px solid silver;
+  position: relative;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  margin: 50px 100px 100px 100px;
+  background: { color: $btn-primary-bg }
+  i {
+    position: absolute;
+    top: 62px;
+    color: $white;
+  }
+
+  > .fa-user {
+    left: 30px;
+  }
+
+  > .fa-group {
+    left: 100px;
+  }
+
+  > .fa-cogs {
+    left: 62px;
+  }
+
+  > .fa-file-image-o {
+    left: 70px;
+  }
+
+}
+
+
+
+
+
 
 // User formatting
 
@@ -303,6 +452,11 @@ span.user > a {
   margin-right: 15px;
 }
 
+// Comment formatting
+
+.quiet {
+  color: #ababab;
+}
 
 // Error formatting
 

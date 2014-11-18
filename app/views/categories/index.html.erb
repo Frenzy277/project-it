@@ -1,5 +1,22 @@
 <section class="wrapper">
-  <%= render 'shared/constant_title', title: "All Categories" %>
+  <%= render 'shared/content_title', title: "All Categories" %>
 
+  <div class="row">
+    <% @categories.each do |category| %>
+      <div class="col-sm-3">
+        <%= link_to category_path(category), class: "thumbnail jumbotron" do %>
+          
+          <h3 class="categories"><%= category.name %></h3>
+
+          <span class="category-projects-count badge badge-heart">
+            <%= category.projects.finished.size %>
+          </span>
+          
+
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   
+
 </section>

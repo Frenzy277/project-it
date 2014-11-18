@@ -3,80 +3,87 @@
   <%= render 'shared/errors', obj: @project %>
 
   <%= form_for @project, html: { class: "form-horizontal", role: "form" } do |f| %>
-  <div class="row">
+    <div class="row">
 
-    <div class="form-group">
-      <%= f.label :manager_id, "Change manager to:", class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.collection_select :manager_id, @project.users, :id, :username, { prompt: true }, { class: "form-control" } %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :status, class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.select :status, project_statuses, { prompt: true }, { class: "form-control" } %>
-      </div>
-    </div>
-
-    <% if @project.team == false %>
       <div class="form-group">
-        <%= f.label :team, "Change to team project?", class: "col-sm-4 control-label" %>
-        <div class="col-sm-4 radio-buttons">
-          <%= radio_button(:project, :team, false, checked: true) %> No
-          <%= radio_button(:project, :team, true) %> Yes
+        <%= f.label :manager_id, "Change manager to:", class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.collection_select :manager_id, @project.users, :id, :username, { prompt: true }, { class: "form-control" } %>
         </div>
       </div>
-    <% end %>
-    
 
-    <div class="form-group">
-      <%= f.label :project_name, class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.text_field :project_name, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :status, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.select :status, project_statuses(@project), { prompt: true }, { class: "form-control" } %>
+        </div>
+      </div>
+
+      <% if !@project.team? %>
+        <div class="form-group">
+          <%= f.label :team, "Change to team project?", class: "col-sm-4 control-label" %>
+          <div class="col-sm-4 radio-buttons">
+            <%= radio_button(:project, :team, false, checked: true) %> No
+            <%= radio_button(:project, :team, true) %> Yes
+          </div>
+        </div>
+      <% end %>
+      
+
+      <div class="form-group">
+        <%= f.label :title, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_area :description, rows: 3, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :end_date, "End date", class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :end_date, class: "form-control", id: "date_picker" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :github_url, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :github_url, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :heroku_url, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :heroku_url, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image_url, "Image url" ,class: "col-sm-4 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :image_url, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :category_ids, "Categories", class: "col-sm-4 control-label" %><br>
+        <div class="col-sm-4" style="margin-left: 3%;">
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+            <%= cb.label(class: "checkbox") { cb.check_box(class: "checkbox") + cb.text } %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= f.submit "Update Project", class: "btn btn-primary form-control" %>
       </div>
     </div>
-
-    <div class="form-group">
-      <%= f.label :project_description, "Description", class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.text_area :project_description, rows: 3, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :end_date, "Deadline", class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.text_field :end_date, class: "date_picker form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :github_url, class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.text_field :github_url, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :heroku_url, class: "col-sm-4 control-label" %>
-      <div class="col-sm-4">
-        <%= f.text_field :heroku_url, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :category_ids, "Categories", class: "col-sm-4 control-label" %><br>
-      <div class="col-sm-4" style="margin-left: 3%;">
-        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-          <%= cb.label(class: "checkbox") { cb.check_box(class: "checkbox") + cb.text } %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-sm-4 col-sm-offset-4">
-      <%= f.submit "Update Project", class: "btn btn-primary form-control" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
 </div>

@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 
-
-
   resources :users, only: [:create, :show, :edit, :update]
   resources :messages, only: [:index, :create, :destroy] do
     member do
@@ -19,7 +17,7 @@ Rails.application.routes.draw do
     resources :jobs, only: :index
   end
 
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:index, :show, :new, :create]
 
   resources :projects do
     member do
@@ -27,11 +25,14 @@ Rails.application.routes.draw do
       post 'like'
     end
 
-    resources :jobs, except: [:index] do
+    resources :jobs, except: [:index, :show] do
       member do
         post 'done'
       end
     end
+
+    resources :comments, only: [:create, :destroy]
+    resources :hires, only: [:new, :create]
   end
 
 end

@@ -24,9 +24,9 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="jobs-in-progress">
 
-                <%= render partial: 'jobs/job', collection: current_user.jobs_in_progress, locals: { show_buttons: "no", row_disappear: "yes" } %>
+                <%= render partial: 'jobs/job', collection: current_user.jobs_in_progress, locals: { row_disappear: "yes" } %>
               </tbody>
             </table>
           </div>
@@ -54,8 +54,8 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <%= render partial: 'jobs/job', collection: current_user.jobs_completed, locals: { show_buttons: "no" } %>
+              <tbody id="jobs-completed">
+                <%= render partial: 'jobs/job', collection: current_user.jobs_completed %>
               </tbody>
             </table>
           </div>

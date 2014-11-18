@@ -1,5 +1,33 @@
-<section class="wrapper">
-  <%= render 'shared/constant_title', title: @category.name %>
+<div class="wrapper">
+  <%= render 'shared/content_title', title: "Category: #{@category.name}" %>
 
+  <div class="row">
+      <% @category.projects.finished.each do |project| %>
+        <div class="col-sm-3">
+          <%= link_to project_path(project), class: "thumbnail" do %>
+            
+            <span class="portfolio-project-image">
+              <% if project.image_url.blank? %>
+                <h1>No picture</h1>
+
+              <% else %>
+                <img src="<%= project.image_url %>" alt="<%= project.title %>" height="150" width="100%"/>
+              <% end %>
+            </span>
+            
+
+            <ul class="no-list project-info">
+              <li>Project: <%= project.title %></li>
+              <li>Finished on: <%= pretty_date(project.end_date) %></li>
+            </ul>
+            <span class="glyphicon glyphicon-heart move-heart">
+              <span class="category-likes-count">
+                <%= project.total_likes %>
+              </span>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   
-</section>
+</div>

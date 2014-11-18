@@ -1,34 +1,44 @@
 <tr>
   <!-- Categories -->
   <td>
-    <ul class="no-list">
-      <%= render project.categories %>
-    </ul>
+    <%= render project.categories %>
   </td>
 
-  <!-- Project name -->
-  <td><%= project.project_name %></td>
-
-  <!-- Link to a project -->
+  <!-- Title -->
   <td>
-    <p style="font-size: 16px;"><%= link_to "See this project", project_path(project), class: "label label-danger" %></p>
+    <p>
+      <%= link_to project.title , project_path(project), class: "label label-danger" %>
+    </p>
+    <p>
+      <% if project.users.include?(current_user) %>
+        <%= link_to "link to management", management_project_path(project), class: "label label-danger" %>
+      <% end %>      
+    </p>
   </td>
-  
+
   <!-- Members -->
   <td>
     <% project.users.each do |member| %>
-      <%= member.username %>
+      <%= link_to user_path(member), class: "badge" do %>
+        <%= member.username %>
+      <% end %>
     <% end %>
   </td>
 
-  <!-- Status -->
-  <td><%= project.status %></td>
+  <!-- Solo/Team? -->
+  <td>
+    <% if project.team? %>
+      Team
+    <% else %>
+      Solo
+    <% end %>
+  </td>
 
   <!-- Start-date -->
-  <td><%= pretty_time(project.created_at) %></td>
+  <td><%= pretty_date(project.created_at) %></td>
 
   <!-- Estimated end-date -->
-  <td><%= pretty_time(project.end_date) %></td>
+  <td><%= pretty_date(project.end_date) %></td>
 </tr>
 
 

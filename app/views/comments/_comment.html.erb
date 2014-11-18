@@ -1,0 +1,19 @@
+<div class='well span8'>
+  <em><%= comment.body %></em>
+  <% if params[:controller] == 'users' %>
+    on <%= link_to comment.project.project_name, project_path(comment.project) %>
+  <% end %>
+    
+  <br/>
+  <span class="quiet">commented by</span> <%= link_to comment.user.username, user_path(comment.user) %>
+  <small>at <%= pretty_time(comment.created_at) %></small>
+  <% if logged_in? && current_user.admin? %>
+    <span class="pull-right">
+      <%= link_to project_comment_path(comment.project, comment), method: "delete", role: "button", "aria-hidden" => true, remote: true do %>
+        <span class="fa fa-trash fa-lg"></span>
+      <% end %>
+    </span>
+    
+  <% end %>
+</div>
+

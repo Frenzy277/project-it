@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @projects = Project.all
+    @projects = Project.favorite_projects
 
     respond_to do |format|
       format.html

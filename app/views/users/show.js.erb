@@ -1,0 +1,19 @@
+// Remove class active tab from all tabs
+<% %w(#user-projects-tab #user-comments-tab).each do |this| %> 
+  $("<%= this %>").removeClass('active');
+<% end %>
+
+// Add class active to clicked tab
+<% if params[:tab] %>
+  <%# binding.pry %>
+  $("#user-<%= params[:tab] %>-tab").addClass('active');
+
+  <% if params[:tab] == 'comments' %>
+    $("#user-projects").fadeOut('slow');
+    $("#user-comments").fadeIn('slow').html('<%= j render @user.comments %>');
+  <% elsif params[:tab] == 'projects' %>
+    $("#user-comments").fadeOut('slow');
+    $("#user-projects").fadeIn('slow');
+  <% end %>
+<% end %>
+

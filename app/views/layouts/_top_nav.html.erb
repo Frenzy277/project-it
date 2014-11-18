@@ -15,12 +15,9 @@
     </div>
     <div class="navbar-left">
       <ul class='nav navbar-nav'>
-        <li>
-          <%= link_to "http://www.gotealeaf.com" do %>
-            <%= tealeaf %>
-          <% end %>
-        </li>
+        <li><%= link_to tealeaf, "http://www.gotealeaf.com" %></li>
         <li><%= link_to "Favorite Projects", "/#myCarousel" %></li>
+        <li><%= link_to "Categories", categories_path %></li>
       </ul>
     </div>
 

@@ -44,8 +44,8 @@
 <div class="panel panel-info panel-msg">
   <div class="panel-heading special" id="msg-<%= message.id %>-heading">
     <h3 class="panel-title">
-      <span class="pull-left">From: <%= message.sender.username %></span>
-      <span class="pull-right">Sent at: <%= message.created_at %></span>
+      <span class="pull-left">From: <%= link_to message.sender.username, user_path(message.sender) %></span>
+      <span class="pull-right">Sent at: <%= pretty_time(message.created_at) %></span>
       <div class="clearfix"></div>
     </h3>
   </div>
@@ -59,19 +59,20 @@
           </p>
 
           <hr>
+          <small><em><span class="quiet"><%= "viewed at #{pretty_time(message.viewed_at)}" if message.viewed_at != nil %></span></em></small>
           <h4>
             <%= button_tag "Reply" , class: "label label-primary", data: { toggle: "modal", target: "#msg-#{message.id}-replyModal" } %>
           </h4>
           
       </div>
     <div class="col-sm-2">
-        <span>
+        <span data-toggle="popover" data-placement="bottom" data-content="Mark message as read/unread." class="mark-read">
           <%= link_to read_message_path(message, read: mark_read), method: "post", remote: true do %>
             <i class="fa fa-eye fa-lg"></i>
-          <% end %>
-     
+          <% end %>     
         </span>
-        <span>
+        
+        <span data-toggle="popover" data-placement="bottom" data-content="Delete message." class="mark-delete">
           <%= link_to message_path(message), method: "delete", remote: true do %>
             <i class="fa fa-trash fa-lg"></i>
           <% end %>
@@ -87,6 +88,7 @@
   $('#msg-<%= message.id %>-heading').click(function(){
     $('#msg-<%= message.id %>-body').slideToggle('slow');
   });
+ 
   // $(document).on('click', '#msg-<%= message.id %>-heading', function(){
   //   $('#msg-<%= message.id %>-body').slideToggle('slow');
   // });

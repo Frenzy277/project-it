@@ -1,6 +1,5 @@
-<%# binding.pry %>
 <% if @like.valid? %>
-  $("#project-<%= @project.id %>-likes").html("<%= j pluralize(@project.total_likes, 'like') %>");
+  $("#project-<%= @project.id %>-likes").html("<%= j pluralize(@project.likes_count, 'like') %>");
 <% else %>
   alert('You have already liked this project.');
 <% end %>

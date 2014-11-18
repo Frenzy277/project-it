@@ -1,0 +1,32 @@
+<div id="myCarousel" class="carousel slide">
+  
+  <ol class="carousel-indicators">
+    <% @projects.each_with_index do |project, index| %>
+    <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
+    <% end %>
+  </ol>
+
+  <div class="carousel-inner">
+    <% @projects.each_with_index do |project, index| %>
+    <div class="item <%= 'active' if index == 0 %>">
+      
+      <img src="<%= project.image_url %>" alt="<%= project.title %>" height="800px" width="100%"/>
+      <div class="carousel-caption">
+        <h1><%= link_to project.title, project_path(project) %></h1>
+        <p><%= project.description %></p>
+      </div>
+      
+    </div>
+    <% end %>
+
+  </div>
+
+  <a href="#myCarousel" class="carousel-control left" data-slide="prev" role="button">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  </a>
+
+  <a href="#myCarousel" class="carousel-control right" data-slide="next" role="button">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  </a>
+
+</div>

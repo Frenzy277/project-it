@@ -18,8 +18,9 @@
     <%= render 'layouts/flash_messages' %>
   </div>
   <% if params[:controller] == 'static_pages' && params[:action] == 'home' %>
-    <%= render 'layouts/jumbotron' %>
-    <%= render 'layouts/carousel' %>
+    <%= render 'static_pages/jumbotron' %>
+    <%= render 'static_pages/marketing' %>
+    <%= render 'static_pages/carousel' %>
   <% end %>
   
 

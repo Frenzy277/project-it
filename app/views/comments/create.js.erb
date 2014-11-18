@@ -1,0 +1,7 @@
+<% if @comment.valid? %>
+  $('#project-comments').html('<%= j render @project.comments %>');
+  $('#comments').html("<%= j pluralize(@project.comments.size, 'comment').capitalize %>");
+  $('#comment-body-form').val("");
+<% else %>
+  alert("Body can not be blank.");
+<% end %>

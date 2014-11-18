@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :like, :management]
-  before_action :require_user
+  before_action :require_user, except: [:show]
   before_action :require_member, only: [:management]
   before_action :require_manager, only: [:edit, :update, :destroy]
 
@@ -31,15 +31,13 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @project.update(project_params)
-      @project.manager = params[:project][:manager_id].to_i
+    @project.manager_id = params[:project][:manager_id].to_i
+    if @project.update(project_params)      
       flash[:success] = "Successfully updated your project."
       redirect_to management_project_url(@project)
     else
@@ -48,20 +46,24 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project.destroy
+    flash[:danger] = "Your project was deleted."
+    redirect_to projects_url
   end
 
   def management
   end
 
   def like
-    @like = Like.create(user_id: current_user.id, likeable: @project, like: true)
+    @like = Like.create(user: current_user, likeable: @project, like: true)
+    @project.increment!(:likes_count) if @like.valid?
 
     respond_to do |format|
       format.html do 
         if @like.valid?
           flash[:success] = "Your like has been counted."
         else
-          flash[:danger] = "You already liked #{project.project_name}."
+          flash[:danger] = "You already liked #{project.title}."
         end
 
         redirect_to :back
@@ -74,8 +76,15 @@ class ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:project_name, :project_description, :status, :end_date,
-                                      :github_url, :heroku_url, :team, category_ids: [])
+      params.require(:project).permit(:title, 
+                                      :description, 
+                                      :status, 
+                                      :end_date,
+                                      :github_url, 
+                                      :heroku_url, 
+                                      :image_url, 
+                                      :team, 
+                                      category_ids: [])
     end
 
     def set_project

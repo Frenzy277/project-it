@@ -27,8 +27,7 @@ class JobsController < ApplicationController
     #maybe Todo
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @job.update(job_params)
@@ -60,7 +59,7 @@ class JobsController < ApplicationController
   private
 
     def job_params
-      params.require(:job).permit(:job_name, :description, :status, :deadline, :user_id)
+      params.require(:job).permit(:name, :description, :status, :deadline, :user_id)
     end
 
     def set_job

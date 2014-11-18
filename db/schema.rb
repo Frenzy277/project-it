@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117011644) do
+ActiveRecord::Schema.define(version: 20141118135738) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -33,18 +33,18 @@ ActiveRecord::Schema.define(version: 20141117011644) do
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "job_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["job_id"], name: "index_comments_on_job_id"
+  add_index "comments", ["project_id"], name: "index_comments_on_project_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "jobs", force: true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
-    t.string   "job_name"
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20141117011644) do
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "projects", force: true do |t|
-    t.string   "project_name"
-    t.string   "status"
+    t.string   "title"
+    t.string   "status",      default: "in-progress"
     t.string   "slug"
     t.string   "github_url"
     t.string   "heroku_url"
@@ -89,8 +89,10 @@ ActiveRecord::Schema.define(version: 20141117011644) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "project_description"
-    t.boolean  "team",                default: false
+    t.text     "description"
+    t.boolean  "team",        default: false
+    t.string   "image_url"
+    t.integer  "likes_count", default: 0
   end
 
   add_index "projects", ["manager_id"], name: "index_projects_on_manager_id"
@@ -112,6 +114,7 @@ ActiveRecord::Schema.define(version: 20141117011644) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",           default: false
   end
 
 end

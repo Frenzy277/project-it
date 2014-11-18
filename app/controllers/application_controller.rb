@@ -14,21 +14,28 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    restricted_area if !logged_in?    
+    if !logged_in?
+      flash[:danger] = "You have to log in to."
+      redirect_to root_url
+    end
   end
 
   def require_member
-    restricted_area if logged_in? && !@project.users.include?(current_user)           
+    restricted_area unless logged_in? && @project.users.include?(current_user)           
   end
 
   def require_manager
-    restricted_area if logged_in? && @project.manager != current_user
+    restricted_area unless logged_in? && current_user == @project.manager 
+  end
+
+  def require_admin    
+    restricted_area unless logged_in? && current_user.admin?
   end
 
   private
 
   def restricted_area
-    flash[:danger] = "Restricted area"
+    flash[:danger] = "Restricted area."
     redirect_to root_url
   end
 end

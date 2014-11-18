@@ -10,8 +10,12 @@ module ApplicationHelper
     end
   end
 
-  def project_statuses
-    ["hiring","in-progress","finished"]
+  def project_statuses(project)
+    if project.team?
+      ["hiring","in-progress","finished"]
+    else
+      ["in-progress","finished"]
+    end
   end
 
   def job_statuses
@@ -30,5 +34,17 @@ module ApplicationHelper
       date = date.in_time_zone(current_user.time_zone)
     end
     date.strftime("%m/%d/%Y")
+  end
+
+  def fix_url(str)
+    if str.blank?
+      "<em> URL was not specified.</em>".html_safe
+    else
+      if str.start_with?('http') 
+        link_to(str, str) 
+      else
+        link_to(str, "http://#{str}")
+      end
+    end
   end
 end

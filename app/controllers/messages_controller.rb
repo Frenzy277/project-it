@@ -55,8 +55,8 @@ class MessagesController < ApplicationController
     end
 
     def set_unread_read
-      @unread_messages = current_user.unread_messages
-      @read_messages = current_user.read_messages
+      @unread_messages = current_user.unread_messages.order(created_at: :desc)
+      @read_messages = current_user.read_messages.order(created_at: :desc)
     end
 
 end

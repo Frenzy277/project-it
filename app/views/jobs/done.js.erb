@@ -1,5 +1,8 @@
 <%# binding.pry %>
-$('#job-status-<%= @job.id %>').html('<%= @job.status %>');
+$('#job-status-<%= @job.id %>').html("<%= @job.status %>");
+$('#job-<%= @job.id %>-mark-as-completed').hide('slow');
+$('#jobs_count').html("<%= current_user.total_jobs_in_progress %>");
 <% if params[:row_disappear] == 'yes' %>
-  $('tr#job-row-<%= @job.id %>').hide();
+  $('tr#job-row-<%= @job.id %>').hide("slow");
+  $('tbody#jobs-completed').html("<%= j render partial: 'jobs/job', collection: current_user.jobs_completed %>");
 <% end %>
