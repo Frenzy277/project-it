@@ -1,4 +1,4 @@
-<section class="wrapper">
+<div class="wrapper">
   <%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
     
   <div class="col-sm-6">
@@ -48,12 +48,12 @@
               <h1>No picture</h1>
 
             <% else %>
-              <img src="<%= project.image_url %>" alt="<%= project.project_name %>" height="150" width="100%"/>
+              <img src="<%= project.image_url %>" alt="<%= project.title %>" height="150" width="100%"/>
             <% end %>
           </span>
 
           <ul class="no-list project-info">
-            <li>Project: <%= project.project_name %></li>
+            <li>Project: <%= project.title %></li>
             <li>Finished on: <%= pretty_date(project.end_date) %></li>
           </ul>
           <span class="glyphicon glyphicon-heart move-heart">
@@ -71,7 +71,7 @@
     </div>
     
   </div>
-</section>
+</div>
 
 <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
   <div class="modal-dialog">
