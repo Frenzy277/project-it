@@ -16,7 +16,7 @@ class JobsController < ApplicationController
     @job = @project.jobs.build(job_params)
 
     if @job.save
-      flash[:notice] = "Job created"
+      flash[:success] = "Job created"
       redirect_to management_project_url(@project)
     else
       render :new

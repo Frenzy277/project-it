@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <%= render 'shared/content_title', title: "Edit project: #{@project.project_name}" %>
+  <%= render 'shared/content_title', title: "Edit project: #{@project.title}" %>
   <%= render 'shared/errors', obj: @project %>
 
   <%= form_for @project, html: { class: "form-horizontal", role: "form" } do |f| %>
