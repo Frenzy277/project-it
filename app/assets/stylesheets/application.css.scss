@@ -68,11 +68,10 @@ $red: red;
 .panel-body > .row > article.col-sm-6 > .row {
   padding: 3px 3px 3px 0px;
   font-size: 16px;
-
+  
   > .col-sm-4 > span {
     font-weight: bold;
   }
-
 }
 
 .panel-manager-area > a {
@@ -95,9 +94,6 @@ td > p > .label-danger {
   font-size: 14px;
 } 
 
- 
-
-
 
 // Forms
 
@@ -111,6 +107,22 @@ p.form-control-static {
     margin-left: 10px;
   } 
 }
+
+.signin {
+  width: 400px;
+  background-color: #bdc3c7;
+  .form-control {
+    width: 85%;
+    margin-left: 30px;
+    margin-top: 15px;
+
+  }
+  .btn {
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+}
+
 
 
 // Messages
@@ -181,7 +193,7 @@ dl.row {
   margin-bottom: 2px;
 }
 
-// Navigation, top, sign in form
+// Navigation, top
 
 .navbar-inverse {
   background: { color: $navbar-darker-blue; }
@@ -189,6 +201,7 @@ dl.row {
   
   .navbar-brand {
     color: $white;
+    font-size: 40px;
   }
 
   .navbar-nav {
@@ -231,7 +244,6 @@ dl.row {
   .badge {
     margin-left: 15px;
   }
-
   #jobs_count {
     background-color: $red;
     margin-left: 49px;
@@ -282,27 +294,9 @@ dl.row {
 }
 
 
-.signin {
-  width: 400px;
-  background-color: #bdc3c7;
-  .form-control {
-    width: 85%;
-    margin-left: 30px;
-    margin-top: 15px;
-
-  }
-  .btn {
-    margin-top: 0px;
-    margin-bottom: 15px;
-  }
-}
 
 #topper {
   padding-top: 50px;
-}
-
-.navbar-brand {
-  font-size: 40px;
 }
 
 .logo {
@@ -389,22 +383,10 @@ a.thumbnail {
   top: 20px;
   left: 130px;
 
-  > .left {
-
-  position: relative;
-  }
-
   > .middle {
-
-  position: relative;
+    position: relative;
     left: -5px;
   }
-
-  > .right {
-
-  position: relative;
-  }
-
 }
 
 .marketing-circle {
@@ -437,13 +419,7 @@ a.thumbnail {
   > .fa-file-image-o {
     left: 70px;
   }
-
 }
-
-
-
-
-
 
 // User formatting
 
