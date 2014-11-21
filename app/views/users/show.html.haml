@@ -1,0 +1,61 @@
+.wrapper
+  = render 'shared/content_title', title: "Profile: #{@user.username}"
+  .col-sm-6
+    .well
+      %dl.row
+        %dt.col-sm-4 Username
+        %dd.col-sm-8= @user.username
+      %dl.row
+        %dt.col-sm-4 Time zone
+        %dd.col-sm-8= @user.time_zone
+      - if logged_in?
+        %dl.row
+          %dt.col-sm-4 Contact
+          %dd.col-sm-8(style="font-size: 15px;")
+            = button_tag :button, class: "label label-warning", data: { toggle: "modal", target: "#msgModal"} { "Send him a message." }
+    .clearfix
+  .clearfix
+
+  .well(role="tabpanel")
+    %ul.nav.nav-tabs
+      %li.active#user-projects-tab(role="presentation")
+        = link_to "Finished projects", user_path(@user, tab: "projects"), role: "tab", data: { toggle: "tab" }, remote: true
+      %li#user-comments-tab(role="presentation")
+        = link_to "Comments", user_path(@user, tab: "comments"), role: "tab", data: { toggle: "tab" }, remote: true
+      
+    #user-projects.row
+      - @user.projects_finished.each do |project|
+        .col-sm-3
+          = link_to project_path(project), class: "thumbnail" do
+            %span.portfolio-project-image
+              - if project.image_url.blank?
+                %h1 No picture
+              - else
+                %img(src="#{project.image_url}" alt="#{project.title}" height="150" width="100%")
+            %ul.no-list.project-info
+              %li Project: #{project.title}
+              %li Finished on: #{pretty_date(project.end_date)}
+            %span.glyphicon.glyphicon-heart.move-heart
+              %span.category-likes-count
+                = project.total_likes
+    #user-comments(style="display: none;")
+
+.modal.fade#msgModal(tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = close_button('modal')
+        %h4.modal-title#messageModalLabel New message
+      = form_for Message.new, html: { role: "form" } do |f|
+        .modal-body
+          .form-group
+            = f.label :recipient_id, "Recipient:", class: "control-label"
+            %p.form-control-static
+              #span.label.label-primary= @user.username
+            = f.hidden_field :recipient_id, value: @user.id
+          .form-group
+            = f.label :body, "Message:", class: "control-label"
+            = f.text_area :body, class: "form-control"
+        .modal-footer
+          = button_tag "Close", class: 'btn btn-default', data: { dismiss: "modal" }
+          = f.submit "Send message", class: "btn btn-primary"

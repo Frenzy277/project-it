@@ -1,0 +1,5 @@
+%div{class:  %w(wrapper)}
+  = render 'shared/content_title', title: "Registration"
+  .row.text-center
+    = render 'shared/errors', obj: @user
+    = render 'form'
